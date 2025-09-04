@@ -1,0 +1,2592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Bottleneck Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #101323;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calculator {
+            background: #101323;
+            border: 1px solid #2f396a;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .form-section {
+            padding: 30px;
+            background: #181d35;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 400px) {
+                    .form-section {
+            padding: 10px;
+            padding-top: 20px;
+        }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .form-group select, .form-group input {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+            
+            .form-group label {
+                font-size: 13px;
+            }
+            
+            .icon-wrapper {
+                width: 36px !important;
+                height: 36px !important;
+                padding: 5px !important;
+            }
+            
+            .field-icon {
+                width: 24px !important;
+                height: 24px !important;
+            }
+            
+            .label-title {
+                font-size: 13px;
+            }
+            
+            .field-description {
+                font-size: 11px;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .form-group label .label-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .icon-wrapper {
+            background: linear-gradient(135deg, #607afb, #2f396a);
+            border-radius: 6px;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+        }
+
+        .field-icon {
+            width: 28px;
+            height: 28px;
+            vertical-align: middle;
+        }
+
+        .field-group-icon-wrapper {
+            border-radius: 6px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            margin-right: 10px;
+        }
+
+        .storage-icon-wrapper {
+            background: linear-gradient(135deg, #27ae60, #219653);
+        }
+
+        .user-icon-wrapper {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .game-icon-wrapper {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .field-group-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #607afb;
+        }
+
+        .field-group-title-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .field-group-title {
+            color: #607afb;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .field-group-description {
+            font-size: 12px;
+            font-weight: normal;
+            color: #b0b0b0;
+            text-align: left;
+            margin: 0;
+        }
+
+        .label-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .label-title {
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .field-description {
+            font-size: 12px;
+            font-weight: normal;
+            color: #b0b0b0;
+            text-align: left;
+            margin: 0;
+        }
+
+        .form-group label .info-icon {
+            cursor: help;
+            color: #b0b0b0;
+            font-size: 14px;
+            align-self: flex-start;
+            margin-top: 8px;
+        }
+
+        .form-group select, .form-group input {
+            padding: 14px 16px;
+            border: 2px solid #2f396a;
+            border-radius: 10px;
+            font-size: 15px;
+            background: #181d35;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group select:focus, .form-group input:focus {
+            outline: none;
+            border-color: #607afb;
+            box-shadow: 0 0 0 3px rgba(96, 122, 251, 0.2);
+        }
+
+        .form-group select:hover {
+            border-color: #607afb;
+            background-color: #1a1f3c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group select:focus, .form-group input:focus {
+            outline: none;
+            border-color: #607afb;
+            box-shadow: 0 0 0 3px rgba(96, 122, 251, 0.2);
+        }
+
+        .form-group select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b0b0b0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        /* Custom dropdown styling */
+        .form-group select::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .form-group select::-webkit-scrollbar-track {
+            background: #181d35;
+            border-radius: 4px;
+        }
+
+        .form-group select::-webkit-scrollbar-thumb {
+            background: #2f396a;
+            border-radius: 4px;
+        }
+
+        .form-group select::-webkit-scrollbar-thumb:hover {
+            background: #607afb;
+        }
+
+        /* Firefox scrollbar */
+        .form-group select {
+            scrollbar-width: thin;
+            scrollbar-color: #2f396a #181d35;
+        }
+
+        .form-group select option {
+            background: #181d35;
+            color: #e0e0e0;
+            padding: 10px 16px;
+            border-bottom: 1px solid #2f396a;
+        }
+
+        .form-group select option:hover {
+            background: #2f396a;
+        }
+
+        .form-group select option:checked {
+            background: #607afb;
+            color: white;
+        }
+
+        .form-group select:hover {
+            border-color: #607afb;
+            background-color: #1a1f3c;
+        }
+
+        .advanced-toggle {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .toggle-btn {
+            background: rgba(47, 57, 106, 0.5);
+            color: #e0e0e0;
+            border: 2px solid #2f396a;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(58, 70, 133, 0.8);
+            border-color: #3a4685;
+            transform: translateY(-2px);
+        }
+
+        .advanced-fields {
+            background: #21284a;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .field-group {
+            margin-bottom: 25px;
+        }
+
+        .field-group h4 {
+            color: #607afb;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #607afb;
+            display: inline-block;
+            font-size: 18px;
+        }
+
+        .advanced-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .advanced-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group select, .form-group input {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+            
+            .field-group-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .field-group-icon-wrapper {
+                width: 40px;
+                height: 40px;
+                padding: 6px;
+            }
+            
+            .field-group-title {
+                font-size: 18px;
+            }
+            
+            .field-group-description {
+                font-size: 11px;
+            }
+            .label-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        }
+
+        .calculate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #607afb, #2f396a);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(96, 122, 251, 0.4);
+        }
+
+        .results-section {
+            margin-top: 40px;
+            display: none;
+            padding: 30px;
+            background: #181d35;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .results-header h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .config-summary {
+            background: #21284a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #607afb;
+        }
+
+        .config-summary p {
+            margin: 8px 0;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .config-summary strong {
+            min-width: 120px;
+            color: #ffffff;
+        }
+
+        .gauges-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .gauge-box {
+            text-align: center;
+        }
+
+        .gauge-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .gauge-container {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            margin: 0 auto 20px;
+        }
+
+        .gauge-canvas-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .gauge-center-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ffffff;
+            pointer-events: none;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .gauge-value-large {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .gauge-subvalue {
+            font-size: 0.9em;
+            color: #b0b0b0;
+            margin: 3px 0 0;
+        }
+
+        .gauge-status {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 5px;
+            color: #e0e0e0;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #607afb, #2f396a);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(96, 122, 251, 0.2);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 8px 0 5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .metric-label {
+            font-size: 15px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .recommendations {
+            background: #21284a;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .recommendations h3 {
+            color: #27ae60;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recommendation-item {
+            margin: 12px 0;
+            padding: 12px;
+            background: rgba(39, 174, 96, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .recommendation-content {
+            flex: 1;
+        }
+
+        .recommendation-title {
+            font-weight: 600;
+            display: block;
+        }
+
+        .recommendation-detail {
+            font-weight: normal;
+            display: block;
+        }
+
+        @media (max-width: 400px) {
+            .recommendation-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .recommendation-icon {
+                margin-top: 0;
+                display: none;
+            }
+            
+            .recommendation-title,
+            .recommendation-detail {
+                display: block;
+            }
+
+        .recommendations h3 {
+            align-items: start;
+        }
+
+        .recommendations svg {
+            margin-top: 5px;
+        }
+        }
+
+        .recommendation-icon {
+            color: #27ae60;
+            font-size: 1.5rem;
+            margin-top: 0px;
+        }
+
+        .builds-section {
+            margin-top: 40px;
+        }
+
+        .builds-section h3 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .builds-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .builds-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .builds-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .build-card {
+            background: #181d35;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid #2f396a;
+            transition: all 0.3s ease;
+        }
+
+        .build-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .build-header {
+            padding: 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .build-header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .build-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .build-resolution {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        @media (min-width: 769px) {
+            .build-header {
+                flex-direction: row;
+            }
+            
+            .build-header-content {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+                gap: 10px;
+            }
+            
+            .build-title {
+                font-size: 1.3rem;
+            }
+            
+            .build-resolution {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .build-header {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                gap: 0;
+            }
+            
+            .build-header-content {
+                order: 2;
+                margin-top: 10px;
+                flex-direction: row;
+                gap: 10px;
+            }
+            
+            .build-tag {
+                order: 1;
+                margin-bottom: 10px;
+            }
+        }
+
+        .build-header.budget {
+            background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+        }
+
+        .build-header.mid-range {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .build-header.high-end {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .build-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .build-content {
+            padding: 20px;
+            background: #21284a;
+        }
+
+        .build-content ul {
+            list-style: none;
+        }
+
+        .build-content li {
+            padding: 10px 0;
+            border-bottom: 1px solid #2f396a;
+            display: flex;
+        }
+
+        @media (max-width: 400px) {
+            .build-content li {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        .build-content li:last-child {
+            border-bottom: none;
+        }
+
+        .build-content strong {
+            min-width: 80px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-grid, .gauges-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .gauge-container {
+                height: 120px;
+            }
+            
+            .gauge-value-large {
+                font-size: 1.8em;
+            }
+            
+            .toggle-btn {
+                width: 100%;
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .form-group select, .form-group input {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+            
+            .advanced-fields {
+                padding: 20px 15px;
+            }
+            
+            .advanced-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .field-group h4 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+            
+            .calculate-btn {
+                padding: 15px;
+                font-size: 16px;
+            }
+            
+            .results-section {
+                padding: 20px 15px;
+            }
+            
+            .config-summary {
+                padding: 15px;
+            }
+            
+            .config-summary strong {
+                min-width: auto;
+            }
+            
+            .analysis-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .analysis-box {
+                padding: 15px;
+            }
+            
+            .specs-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .metric-card {
+                padding: 15px;
+            }
+            
+            .metric-value {
+                font-size: 28px;
+            }
+            
+            .build-content strong {
+                min-width: auto;
+            }
+        }
+
+        /* Bottleneck Severity Banner */
+        .severity-banner {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid #2f396a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .severity-banner.severity-low {
+            border-left-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .severity-banner.severity-medium {
+            border-left-color: #FFB300;
+            background: rgba(255, 179, 0, 0.1);
+        }
+
+        .severity-banner.severity-high {
+            border-left-color: #E53935;
+            background: rgba(229, 57, 53, 0.1);
+        }
+
+        .severity-content h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .severity-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 400px) {
+            .severity-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .severity-percentage {
+                min-width: auto;
+                width: 100%;
+                text-align: left;
+                margin-bottom: 15px;
+            }
+            
+            .severity-description {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
+        .severity-percentage {
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .severity-percentage #severity-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #ffffff;
+        }
+
+        .severity-percentage .severity-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .severity-description {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        @media (max-width: 400px) {
+            .severity-description {
+                min-width: auto;
+            }
+        }
+
+        .severity-description p {
+            margin: 8px 0;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .resolution-info {
+            font-weight: 600;
+            color: #607afb;
+        }
+
+        /* Balance Meter */
+        .balance-meter {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .balance-meter h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .meter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        @media (max-width: 400px) {
+            .meter-labels {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: end;
+            }
+            
+            .label-left,
+            .label-center,
+            .label-right {
+                font-size: 0.8rem;
+                position: relative;
+            }
+            
+            .label-left::before {
+                content: "CPU";
+                color: #b0b0b0;
+                position: absolute;
+                left: 0;
+                top: 20px;
+                width: 100%;
+                text-align: left;
+            }
+            
+            .label-center::before {
+                content: "Balance";
+                color: #b0b0b0;
+                position: absolute;
+                left: 0;
+                top: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .label-right::before {
+                content: "GPU";
+                color: #b0b0b0;
+                position: absolute;
+                left: 0;
+                top: 20px;
+                width: 100%;
+                text-align: right;
+            }
+            
+            .label-left,
+            .label-center,
+            .label-right {
+                color: transparent;
+            }
+            .meter-track {
+            height: 10px !important;
+        }
+                .meter-marker {
+            width: 22px !important;
+            height: 22px !important;
+        }
+        }
+
+        .meter-track {
+            position: relative;
+            height: 20px;
+            background: linear-gradient(90deg, #E53935 0%, #FFB300 25%, #4CAF50 50%, #FFB300 75%, #E53935 100%);
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .meter-marker {
+            position: absolute;
+            top: -5px;
+            width: 30px;
+            height: 30px;
+            background: #ffffff;
+            border: 2px solid #2f396a;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .meter-legend {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 400px) {
+            .meter-legend {
+                gap: 15px;
+            }
+            
+            .legend-item {
+                font-size: 0.8rem;
+            }
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+
+        .cpu-color {
+            background: #E53935;
+        }
+
+        .balanced-color {
+            background: #4CAF50;
+        }
+
+        .gpu-color {
+            background: #E53935;
+        }
+
+        /* Component Analysis */
+        .component-analysis {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .analysis-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        @media (max-width: 400px) {
+            .analysis-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+                    .component-analysis {
+            padding: 10px;
+
+        }
+            
+            .analysis-box {
+                padding: 10px !important;
+            }
+        }
+
+        .analysis-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .analysis-box h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 10px;
+        }
+
+        .component-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .component-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        .component-header h4 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 1.2rem;
+        }
+
+        .component-rank {
+            background: #607afb;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 400px) {
+            .component-rank {
+                font-size: 0.75rem;
+                padding: 3px 8px;
+            }
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-bottom: 3px;
+        }
+
+        @media (max-width: 400px) {
+            .spec-label {
+                font-size: 0.8rem;
+            }
+            
+            .spec-value {
+                font-size: 0.9rem;
+            }
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .performance-assessment {
+            border-top: 1px solid #2f396a;
+            padding-top: 15px;
+        }
+
+        @media (max-width: 400px) {
+            .performance-assessment {
+                padding-top: 10px;
+            }
+            
+            .assessment-header {
+                font-size: 0.9rem;
+            }
+        }
+
+        .assessment-header {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .assessment-content {
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PC Bottleneck Calculator</h1>
+            <p>Analyze your CPU and GPU balance to optimize gaming performance and identify hardware limitations</p>
+        </div>
+
+        <div class="calculator">
+            <div class="form-section">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cpu">
+                            <span class="label-content">
+                                <span class="icon-wrapper">
+                                    <img src="images/cpu.png" alt="CPU" class="field-icon">
+                                </span>
+                                <span class="label-text-container">
+                                    <span class="label-title">Processor *</span>
+                                    <span class="field-description">Select your CPU</span>
+                                </span>
+                            </span>
+                            <span class="info-icon" title="Select your CPU">ⓘ</span>
+                        </label>
+                        <select id="cpu">
+                            <option value="">Select CPU...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gpu">
+                            <span class="label-content">
+                                <span class="icon-wrapper" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                                    <img src="images/gpu.png" alt="GPU" class="field-icon">
+                                </span>
+                                <span class="label-text-container">
+                                    <span class="label-title">Graphics Card *</span>
+                                    <span class="field-description">Select your GPU</span>
+                                </span>
+                            </span>
+                            <span class="info-icon" title="Select your GPU">ⓘ</span>
+                        </label>
+                        <select id="gpu">
+                            <option value="">Select GPU...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resolution">
+                            <span class="label-content">
+                                <span class="icon-wrapper" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                                    <img src="images/resolution.png" alt="Resolution" class="field-icon">
+                                </span>
+                                <span class="label-text-container">
+                                    <span class="label-title">Resolution</span>
+                                    <span class="field-description">Monitor resolution</span>
+                                </span>
+                            </span>
+                            <span class="info-icon" title="Your display resolution">ⓘ</span>
+                        </label>
+                        <select id="resolution">
+                            <option value="1080p">1080p (1920×1080)</option>
+                            <option value="1440p">1440p (2560×1440)</option>
+                            <option value="4k">4K (3840×2160)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="advanced-toggle">
+                    <button type="button" class="toggle-btn" id="toggle-btn">
+                        <span>Show Advanced Options</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="advanced-fields" id="advanced-fields">
+                    <div class="field-group">
+                        <div class="field-group-header">
+                            <span class="field-group-icon-wrapper storage-icon-wrapper">
+                                <img src="images/storage.png" alt="Storage" class="field-icon" style="width: 24px; height: 24px;">
+                            </span>
+                            <span class="field-group-title-container">
+                                <span class="field-group-title">Memory & Storage</span>
+                                <span class="field-group-description">Configure your system memory and storage for optimal performance</span>
+                            </span>
+                        </div>
+                        <div class="advanced-grid">
+                            <div class="form-group">
+                                <label for="ram">
+                                    <span class="label-content">
+                                        <span class="label-text-container">
+                                            <span class="label-title">RAM Amount</span>
+                                        </span>
+                                    </span>
+                                    <span class="info-icon" title="Total system RAM">ⓘ</span>
+                                </label>
+                                <select id="ram">
+                                    <option value="8">8GB</option>
+                                    <option value="16" selected>16GB</option>
+                                    <option value="32">32GB</option>
+                                    <option value="64">64GB</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ram-type">
+                                    <span class="label-content">
+                                        <span class="label-text-container">
+                                            <span class="label-title">RAM Type</span>
+                                        </span>
+                                    </span>
+                                    <span class="info-icon" title="DDR4 vs DDR5">ⓘ</span>
+                                </label>
+                                <select id="ram-type">
+                                    <option value="ddr4" selected>DDR4</option>
+                                    <option value="ddr5">DDR5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="storage">
+                                    <span class="label-content">
+                                        <span class="label-text-container">
+                                            <span class="label-title">Primary Storage</span>
+                                        </span>
+                                    </span>
+                                    <span class="info-icon" title="Storage type">ⓘ</span>
+                                </label>
+                                <select id="storage">
+                                    <option value="nvme" selected>NVMe SSD</option>
+                                    <option value="sata">SATA SSD</option>
+                                    <option value="hdd">HDD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field-group-header">
+                            <span class="field-group-icon-wrapper user-icon-wrapper">
+                                <img src="images/user.png" alt="User" class="field-icon" style="width: 24px; height: 24px;">
+                            </span>
+                            <span class="field-group-title-container">
+                                <span class="field-group-title">Usage Profile</span>
+                                <span class="field-group-description">Define your primary usage patterns for accurate analysis</span>
+                            </span>
+                        </div>
+                        <div class="advanced-grid">
+                            <div class="form-group">
+                                <label for="purpose">
+                                    <span class="label-content">
+                                        <span class="label-text-container">
+                                            <span class="label-title">Primary Purpose</span>
+                                        </span>
+                                    </span>
+                                    <span class="info-icon" title="Main use case">ⓘ</span>
+                                </label>
+                                <select id="purpose">
+                                    <option value="gaming" selected>Gaming</option>
+                                    <option value="video-editing">Video Editing</option>
+                                    <option value="3d-rendering">3D Rendering</option>
+                                    <option value="streaming">Streaming</option>
+                                    <option value="productivity">General Productivity</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="refresh-rate">
+                                    <span class="label-content">
+                                        <span class="label-text-container">
+                                            <span class="label-title">Monitor Refresh Rate</span>
+                                        </span>
+                                    </span>
+                                    <span class="info-icon" title="Display refresh rate">ⓘ</span>
+                                </label>
+                                <select id="refresh-rate">
+                                    <option value="60">60Hz</option>
+                                    <option value="75">75Hz</option>
+                                    <option value="120">120Hz</option>
+                                    <option value="144" selected>144Hz</option>
+                                    <option value="240">240Hz</option>
+                                    <option value="360">360Hz</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field-group-header">
+                            <span class="field-group-icon-wrapper game-icon-wrapper">
+                                <img src="images/game.png" alt="Game" class="field-icon" style="width: 24px; height: 24px;">
+                            </span>
+                            <span class="field-group-title-container">
+                                <span class="field-group-title">Game-Specific Analysis</span>
+                                <span class="field-group-description">Optimize settings for your favorite games</span>
+                            </span>
+                        </div>
+                        <div class="advanced-grid">
+                            <div class="form-group">
+                                <label for="game">
+                                    <span class="label-content">
+                                        <span class="label-text-container">
+                                            <span class="label-title">Select Game (Optional)</span>
+                                        </span>
+                                    </span>
+                                    <span class="info-icon" title="Specific game analysis">ⓘ</span>
+                                </label>
+                                <select id="game">
+                                    <option value="">General Gaming</option>
+                                    <option value="cyberpunk-2077">Cyberpunk 2077</option>
+                                    <option value="cs2">Counter-Strike 2</option>
+                                    <option value="valorant">Valorant</option>
+                                    <option value="alan-wake-2">Alan Wake 2</option>
+                                    <option value="fortnite">Fortnite</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="graphics-settings">
+                                    <span class="label-content">
+                                        <span class="label-text-container">
+                                            <span class="label-title">Graphics Settings</span>
+                                        </span>
+                                    </span>
+                                    <span class="info-icon" title="In-game settings">ⓘ</span>
+                                </label>
+                                <select id="graphics-settings">
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high" selected>High</option>
+                                    <option value="ultra">Ultra</option>
+                                    <option value="rt-performance">RT: Performance</option>
+                                    <option value="rt-quality">RT: Quality</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="calculate-btn" id="calculate-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Analyze Build
+                </button>
+            </div>
+
+            <div class="results-section" id="results-section">
+                <div class="results-header">
+                    <h2>Analysis Results</h2>
+                    <p>Detailed performance analysis of your system configuration</p>
+                </div>
+
+                <div class="config-summary" id="config-summary">
+                    <!-- Configuration summary will be inserted here -->
+                </div>
+
+                <!-- Bottleneck Severity Banner -->
+                <div id="severity-banner" class="severity-banner" style="display: none;">
+                    <div class="severity-content">
+                        <h3 id="severity-title">Bottleneck Analysis</h3>
+                        <div class="severity-details">
+                            <div class="severity-percentage">
+                                <span id="severity-value">0%</span>
+                                <span class="severity-label">Overall Bottleneck</span>
+                            </div>
+                            <div class="severity-description">
+                                <p id="severity-text">Analyzing system balance...</p>
+                                <p id="severity-resolution" class="resolution-info"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gauges-container">
+                    <div class="gauge-box">
+                        <div class="gauge-title">CPU Bottleneck</div>
+                        <div class="gauge-container">
+                            <div class="gauge-canvas-wrapper">
+                                <canvas id="cpu-gauge"></canvas>
+                                <div class="gauge-center-label">
+                                    <div id="cpu-center-value" class="gauge-value-large">0%</div>
+                                    <div class="gauge-subvalue">Bottleneck</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cpu-status" class="gauge-status">Calculating...</div>
+                    </div>
+
+                    <div class="gauge-box">
+                        <div class="gauge-title">GPU Bottleneck</div>
+                        <div class="gauge-container">
+                            <div class="gauge-canvas-wrapper">
+                                <canvas id="gpu-gauge"></canvas>
+                                <div class="gauge-center-label">
+                                    <div id="gpu-center-value" class="gauge-value-large">0%</div>
+                                    <div class="gauge-subvalue">Bottleneck</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="gpu-status" class="gauge-status">Calculating...</div>
+                    </div>
+                </div>
+
+                <div class="metrics">
+                    <div class="metric-card">
+                        <div class="metric-label">Average FPS</div>
+                        <div class="metric-value" id="avg-fps">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Maximum FPS</div>
+                        <div class="metric-value" id="max-fps">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">1% Lows</div>
+                        <div class="metric-value" id="one-percent-lows">--</div>
+                    </div>
+                </div>
+
+                <!-- Balance Meter Visualization -->
+                <div id="balance-meter" class="balance-meter" style="display: none;">
+                    <h3>System Balance</h3>
+                    <div class="meter-container">
+                        <div class="meter-labels">
+                            <span class="label-left">CPU Bottleneck</span>
+                            <span class="label-center">Optimal Balance</span>
+                            <span class="label-right">GPU Bottleneck</span>
+                        </div>
+                        <div class="meter-track">
+                            <div class="meter-gradient"></div>
+                            <div class="meter-marker" id="meter-marker"></div>
+                        </div>
+                        <div class="meter-legend">
+                            <div class="legend-item">
+                                <div class="legend-color cpu-color"></div>
+                                <span>CPU Dominant</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color balanced-color"></div>
+                                <span>Balanced</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color gpu-color"></div>
+                                <span>GPU Dominant</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component Analysis Section -->
+                <div id="component-analysis" class="component-analysis" style="display: none;">
+                    <div class="analysis-container">
+                        <div class="cpu-analysis analysis-box">
+                            <h3>CPU Analysis</h3>
+                            <div class="component-header">
+                                <h4 id="cpu-model">CPU Model</h4>
+                                <span class="component-rank" id="cpu-rank">Rank: #0</span>
+                            </div>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Cores/Threads:</span>
+                                    <span class="spec-value" id="cpu-cores">0 Cores / 0 Threads</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Base Clock:</span>
+                                    <span class="spec-value" id="cpu-base-clock">0.0 GHz</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Boost Clock:</span>
+                                    <span class="spec-value" id="cpu-boost-clock">0.0 GHz</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Benchmark Score:</span>
+                                    <span class="spec-value" id="cpu-score">0</span>
+                                </div>
+                            </div>
+                            <div class="performance-assessment">
+                                <div class="assessment-header">Performance Assessment</div>
+                                <div class="assessment-content" id="cpu-assessment">Analyzing CPU performance...</div>
+                            </div>
+                        </div>
+
+                        <div class="gpu-analysis analysis-box">
+                            <h3>GPU Analysis</h3>
+                            <div class="component-header">
+                                <h4 id="gpu-model">GPU Model</h4>
+                                <span class="component-rank" id="gpu-rank">Rank: #0</span>
+                            </div>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">VRAM:</span>
+                                    <span class="spec-value" id="gpu-vram">0GB</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Bus Interface:</span>
+                                    <span class="spec-value" id="gpu-bus">PCIe x16</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Resolution Impact:</span>
+                                    <span class="spec-value" id="gpu-resolution">1080p: 0 FPS</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Benchmark Score:</span>
+                                    <span class="spec-value" id="gpu-score">0</span>
+                                </div>
+                            </div>
+                            <div class="performance-assessment">
+                                <div class="assessment-header">Performance Assessment</div>
+                                <div class="assessment-content" id="gpu-assessment">Analyzing GPU performance...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recommendations">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Optimization Recommendations
+                    </h3>
+                    <div id="recommendations">
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">🟢</div>
+                            <div>Analysis results will appear here after calculation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="builds-section">
+                    <h3>Recommended Balanced Builds</h3>
+                    <div class="builds-grid">
+                        <div class="build-card">
+                            <div class="build-header budget">
+                                <div class="build-header-content">
+                                    <span class="build-title">Budget</span>
+                                    <span class="build-resolution">(1080p)</span>
+                                </div>
+                                <span class="build-tag">Most Popular</span>
+                            </div>
+                            <div class="build-content">
+                                <ul>
+                                    <li><strong>CPU:</strong> AMD Ryzen 5 5600</li>
+                                    <li><strong>GPU:</strong> NVIDIA RTX 3060</li>
+                                    <li><strong>RAM:</strong> 16GB DDR4</li>
+                                    <li><strong>Storage:</strong> 512GB NVMe SSD</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="build-card">
+                            <div class="build-header mid-range">
+                                <div class="build-header-content">
+                                    <span class="build-title">Mid-Range</span>
+                                    <span class="build-resolution">(1440p)</span>
+                                </div>
+                                <span class="build-tag">Best Value</span>
+                            </div>
+                            <div class="build-content">
+                                <ul>
+                                    <li><strong>CPU:</strong> AMD Ryzen 7 7700X</li>
+                                    <li><strong>GPU:</strong> NVIDIA RTX 4070</li>
+                                    <li><strong>RAM:</strong> 32GB DDR5</li>
+                                    <li><strong>Storage:</strong> 1TB NVMe SSD</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="build-card">
+                            <div class="build-header high-end">
+                                <div class="build-header-content">
+                                    <span class="build-title">High-End</span>
+                                    <span class="build-resolution">(4K)</span>
+                                </div>
+                                <span class="build-tag">Premium</span>
+                            </div>
+                            <div class="build-content">
+                                <ul>
+                                    <li><strong>CPU:</strong> Intel i9-13900K</li>
+                                    <li><strong>GPU:</strong> NVIDIA RTX 4090</li>
+                                    <li><strong>RAM:</strong> 64GB DDR5</li>
+                                    <li><strong>Storage:</strong> 2TB NVMe SSD</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Component database with realistic benchmark scores
+        const components = {
+            cpus: [
+                { id: "ryzen-5-5600", name: "AMD Ryzen 5 5600", score: 14500, rank: 12, coreCount: 6, threadCount: 12, baseClock: "3.5 GHz", boostClock: "4.4 GHz", tdp: "65W" },
+                { id: "ryzen-7-5700x", name: "AMD Ryzen 7 5700X", score: 15800, rank: 5, coreCount: 8, threadCount: 16, baseClock: "3.4 GHz", boostClock: "4.6 GHz", tdp: "65W" },
+                { id: "i5-12600k", name: "Intel Core i5-12600K", score: 16200, rank: 4, coreCount: 6, threadCount: 12, baseClock: "3.7 GHz", boostClock: "4.9 GHz", tdp: "125W" },
+                { id: "i7-12700k", name: "Intel Core i7-12700K", score: 17500, rank: 3, coreCount: 8, pCoreCount: 6, eCoreCount: 4, threadCount: 20, baseClock: "3.6 GHz", boostClock: "5.0 GHz", tdp: "125W" },
+                { id: "ryzen-7-7800x3d", name: "AMD Ryzen 7 7800X3D", score: 17500, rank: 1, coreCount: 8, threadCount: 16, baseClock: "4.2 GHz", boostClock: "5.0 GHz", tdp: "120W" },
+                { id: "i9-13900k", name: "Intel Core i9-13900K", score: 18500, rank: 1, coreCount: 8, pCoreCount: 8, eCoreCount: 16, threadCount: 24, baseClock: "3.0 GHz", boostClock: "5.8 GHz", tdp: "125W" },
+                { id: "ryzen-9-7950x3d", name: "AMD Ryzen 9 7950X3D", score: 16800, rank: 2, coreCount: 16, threadCount: 32, baseClock: "4.2 GHz", boostClock: "5.0 GHz", tdp: "120W" },
+                { id: "i5-13600k", name: "Intel Core i5-13600K", score: 16800, rank: 2, coreCount: 6, pCoreCount: 6, eCoreCount: 8, threadCount: 20, baseClock: "3.5 GHz", boostClock: "5.1 GHz", tdp: "125W" }
+            ],
+            gpus: [
+                { id: "rtx-3060", name: "NVIDIA RTX 3060", score: 12500, fps1080: 145, fps1440: 115, fps4k: 65, rank: 25, vram: "12GB GDDR6", busInterface: "PCIe 4.0 x16", tdp: "170W" },
+                { id: "rtx-4060", name: "NVIDIA RTX 4060", score: 12500, fps1080: 145, fps1440: 115, fps4k: 65, rank: 25, vram: "8GB GDDR6", busInterface: "PCIe 4.0 x16", tdp: "115W" },
+                { id: "rtx-4070", name: "NVIDIA RTX 4070", score: 16800, fps1080: 185, fps1440: 155, fps4k: 90, rank: 4, vram: "12GB GDDR6X", busInterface: "PCIe 4.0 x16", tdp: "200W" },
+                { id: "rtx-4080", name: "NVIDIA RTX 4080", score: 22000, fps1080: 230, fps1440: 200, fps4k: 130, rank: 3, vram: "16GB GDDR6X", busInterface: "PCIe 4.0 x16", tdp: "320W" },
+                { id: "rtx-4090", name: "NVIDIA RTX 4090", score: 37000, fps1080: 370, fps1440: 310, fps4k: 210, rank: 2, vram: "24GB GDDR6X", busInterface: "PCIe 4.0 x16", tdp: "450W" },
+                { id: "rx-7600", name: "AMD RX 7600", score: 11200, fps1080: 135, fps1440: 105, fps4k: 58, rank: 30, vram: "8GB GDDR6", busInterface: "PCIe 4.0 x16", tdp: "165W" },
+                { id: "rx-7900xt", name: "AMD RX 7900 XT", score: 29000, fps1080: 290, fps1440: 250, fps4k: 165, rank: 3, vram: "20GB GDDR6", busInterface: "PCIe 4.0 x16", tdp: "250W" },
+                { id: "gtx-1660-super", name: "NVIDIA GTX 1660 Super", score: 8500, fps1080: 95, fps1440: 68, fps4k: 38, rank: 45, vram: "6GB GDDR6", busInterface: "PCIe 3.0 x16", tdp: "125W" }
+            ],
+            games: [
+                { id: "cyberpunk-2077", name: "Cyberpunk 2077", cpu_intensity: 0.8, gpu_intensity: 0.95 },
+                { id: "cs2", name: "Counter-Strike 2", cpu_intensity: 0.9, gpu_intensity: 0.6 },
+                { id: "valorant", name: "Valorant", cpu_intensity: 0.85, gpu_intensity: 0.5 },
+                { id: "alan-wake-2", name: "Alan Wake 2", cpu_intensity: 0.75, gpu_intensity: 0.98 },
+                { id: "fortnite", name: "Fortnite", cpu_intensity: 0.7, gpu_intensity: 0.75 }
+            ]
+        };
+
+        // Chart storage
+        const charts = {};
+
+        // DOM elements
+        const cpuSelect = document.getElementById('cpu');
+        const gpuSelect = document.getElementById('gpu');
+        const toggleBtn = document.getElementById('toggle-btn');
+        const advancedFields = document.getElementById('advanced-fields');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const resultsSection = document.getElementById('results-section');
+
+        // Populate dropdowns
+        function populateDropdowns() {
+            // Populate CPUs
+            components.cpus.forEach(cpu => {
+                const option = document.createElement('option');
+                option.value = cpu.id;
+                option.textContent = `${cpu.name} (Rank: ${cpu.rank})`;
+                cpuSelect.appendChild(option);
+            });
+
+            // Populate GPUs
+            components.gpus.forEach(gpu => {
+                const option = document.createElement('option');
+                option.value = gpu.id;
+                option.textContent = `${gpu.name} (Rank: ${gpu.rank})`;
+                gpuSelect.appendChild(option);
+            });
+        }
+
+        // Toggle advanced options
+        toggleBtn.addEventListener('click', function() {
+            if (advancedFields.style.display === 'none' || advancedFields.style.display === '') {
+                advancedFields.style.display = 'block';
+                toggleBtn.innerHTML = `
+                    <span>Hide Advanced Options</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 15 12 9 18 15"></polyline>
+                    </svg>
+                `;
+            } else {
+                advancedFields.style.display = 'none';
+                toggleBtn.innerHTML = `
+                    <span>Show Advanced Options</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                `;
+            }
+        });
+
+        // Calculate bottleneck
+        calculateBtn.addEventListener('click', function() {
+            try {
+                console.log('Calculate button clicked');
+                
+                // Check if DOM elements exist
+                if (!cpuSelect) {
+                    console.error('CPU select element not found');
+                    alert('Error: CPU select element not found');
+                    return;
+                }
+                
+                if (!gpuSelect) {
+                    console.error('GPU select element not found');
+                    alert('Error: GPU select element not found');
+                    return;
+                }
+                
+                const cpuId = cpuSelect.value;
+                const gpuId = gpuSelect.value;
+                
+                console.log('Selected CPU ID:', cpuId);
+                console.log('Selected GPU ID:', gpuId);
+
+                if (!cpuId || !gpuId) {
+                    console.warn('Please select both CPU and GPU to calculate bottleneck.');
+                    alert('Please select both CPU and GPU to calculate bottleneck.');
+                    return;
+                }
+
+                const cpu = components.cpus.find(c => c.id === cpuId);
+                const gpu = components.gpus.find(g => g.id === gpuId);
+                
+                console.log('Found CPU:', cpu);
+                console.log('Found GPU:', gpu);
+                
+                if (!cpu) {
+                    console.error('CPU not found in components database');
+                    alert('Error: Selected CPU not found in database');
+                    return;
+                }
+                
+                if (!gpu) {
+                    console.error('GPU not found in components database');
+                    alert('Error: Selected GPU not found in database');
+                    return;
+                }
+                
+                const resolutionElement = document.getElementById('resolution');
+                if (!resolutionElement) {
+                    console.error('Resolution element not found');
+                    alert('Error: Resolution element not found');
+                    return;
+                }
+                
+                const resolution = resolutionElement.value;
+                console.log('Selected resolution:', resolution);
+
+                // Get advanced settings
+                const ramElement = document.getElementById('ram');
+                const purposeElement = document.getElementById('purpose');
+                const gameElement = document.getElementById('game');
+                const refreshRateElement = document.getElementById('refresh-rate');
+                const graphicsSettingsElement = document.getElementById('graphics-settings');
+                
+                if (!ramElement || !purposeElement || !gameElement || !refreshRateElement || !graphicsSettingsElement) {
+                    console.error('Some advanced settings elements not found');
+                    alert('Error: Some advanced settings elements not found');
+                    return;
+                }
+                
+                const ram = parseInt(ramElement.value) || 16;
+                const purpose = purposeElement.value || "gaming";
+                const gameId = gameElement.value || "";
+                const refreshRate = parseInt(refreshRateElement.value) || 144;
+                const graphicsSettings = graphicsSettingsElement.value || "high";
+                
+                console.log('Advanced settings:', { ram, purpose, gameId, refreshRate, graphicsSettings });
+
+                // Perform calculation
+                console.log('Calling calculateBottleneck function');
+                const results = calculateBottleneck(cpu, gpu, resolution, {
+                    ram, purpose, gameId, refreshRate, graphicsSettings
+                });
+                console.log('Calculation results:', results);
+
+                // Display results
+                console.log('Calling displayResults function');
+                displayResults(results, cpu, gpu, resolution);
+                console.log('Finished displaying results');
+            } catch (error) {
+                console.error('Error calculating bottleneck:', error);
+                console.error('Error stack:', error.stack);
+                alert('An error occurred while calculating the bottleneck. Please check the console for details.');
+            }
+        });
+
+        // Bottleneck calculation
+        function calculateBottleneck(cpu, gpu, resolution, advanced) {
+            try {
+                console.log('calculateBottleneck called with:', { cpu, gpu, resolution, advanced });
+                
+                // Validate inputs
+                if (!cpu || !gpu) {
+                    throw new Error('CPU or GPU is undefined');
+                }
+                
+                if (!resolution) {
+                    throw new Error('Resolution is undefined');
+                }
+                
+                if (!advanced) {
+                    throw new Error('Advanced settings are undefined');
+                }
+                
+                if (!cpu.score || !gpu.score) {
+                    throw new Error('CPU or GPU score is missing');
+                }
+                
+                let cpuScore = cpu.score;
+                let gpuScore = gpu.score;
+                
+                console.log('Initial scores - CPU:', cpuScore, 'GPU:', gpuScore);
+
+                // Adjust for resolution
+                const resolutionFactors = {
+                    '1080p': { cpu: 1.0, gpu: 1.0 },
+                    '1440p': { cpu: 0.92, gpu: 1.25 },
+                    '4k': { cpu: 0.85, gpu: 1.6 }
+                };
+                
+                if (!resolutionFactors[resolution]) {
+                    console.warn('Invalid resolution:', resolution, 'Using default 1080p');
+                    resolution = '1080p';
+                }
+                
+                cpuScore *= resolutionFactors[resolution].cpu;
+                gpuScore *= resolutionFactors[resolution].gpu;
+                
+                console.log('Scores after resolution adjustment - CPU:', cpuScore, 'GPU:', gpuScore);
+
+                // Game-specific adjustments
+                if (advanced.gameId) {
+                    const game = components.games.find(g => g.id === advanced.gameId);
+                    if (game) {
+                        console.log('Applying game adjustments for:', game.name);
+                        // CPU-intensive games reduce GPU bottleneck impact
+                        if (game.cpu_intensity > 0.8) {
+                            gpuScore *= 0.9;
+                            console.log('Applied CPU-intensive game adjustment, GPU score now:', gpuScore);
+                        }
+                        
+                        // GPU-intensive games reduce CPU bottleneck impact
+                        if (game.gpu_intensity > 0.8) {
+                            cpuScore *= 0.95;
+                            console.log('Applied GPU-intensive game adjustment, CPU score now:', cpuScore);
+                        }
+                    }
+                }
+
+                // Graphics settings adjustments
+                const settingsFactors = {
+                    'low': { cpu: 1.15, gpu: 0.75 },
+                    'medium': { cpu: 1.05, gpu: 0.85 },
+                    'high': { cpu: 1.0, gpu: 1.0 },
+                    'ultra': { cpu: 0.92, gpu: 1.2 },
+                    'rt-performance': { cpu: 0.85, gpu: 1.35 },
+                    'rt-quality': { cpu: 0.8, gpu: 1.5 }
+                };
+                
+                let graphicsSettings = advanced.graphicsSettings || 'high';
+                if (!settingsFactors[graphicsSettings]) {
+                    console.warn('Invalid graphics settings:', graphicsSettings, 'Using default high');
+                    graphicsSettings = 'high';
+                }
+                
+                const settingsFactor = settingsFactors[graphicsSettings];
+                cpuScore *= settingsFactor.cpu;
+                gpuScore *= settingsFactor.gpu;
+                
+                console.log('Scores after graphics settings adjustment - CPU:', cpuScore, 'GPU:', gpuScore);
+
+                // RAM impact
+                const ram = advanced.ram || 16;
+                if (ram < 16) {
+                    cpuScore *= (0.9 + (ram - 8) * 0.01);
+                    console.log('Applied RAM adjustment, CPU score now:', cpuScore);
+                }
+
+                // Calculate bottleneck percentages
+                const total = cpuScore + gpuScore;
+                const cpuPercentage = cpuScore / total;
+                const gpuPercentage = gpuScore / total;
+                
+                console.log('Percentages - CPU:', cpuPercentage, 'GPU:', gpuPercentage, 'Total:', total);
+
+                // Industry standard: ideal balance is 45% CPU / 55% GPU for gaming
+                const idealCpuPercentage = 0.45;
+                const idealGpuPercentage = 0.55;
+
+                let cpuBottleneck = 0;
+                let gpuBottleneck = 0;
+
+                // CPU bottleneck occurs when CPU is significantly below ideal percentage
+                if (cpuPercentage < idealCpuPercentage * 0.9) {
+                    cpuBottleneck = Math.round((1 - (cpuPercentage / (idealCpuPercentage * 0.9))) * 100);
+                    console.log('Calculated CPU bottleneck:', cpuBottleneck);
+                }
+
+                // GPU bottleneck occurs when GPU is significantly below ideal percentage
+                if (gpuPercentage < idealGpuPercentage * 0.9) {
+                    gpuBottleneck = Math.round((1 - (gpuPercentage / (idealGpuPercentage * 0.9))) * 100);
+                    console.log('Calculated GPU bottleneck:', gpuBottleneck);
+                }
+
+                // FPS calculation
+                const resolutionKey = resolution.replace('p', '');
+                const baseFps = (gpu && gpu['fps' + resolutionKey]) || 100;
+                console.log('Base FPS for', resolution, ':', baseFps);
+                
+                // Apply bottleneck effects to FPS
+                let effectiveFps = baseFps;
+                
+                if (cpuBottleneck > 0) {
+                    effectiveFps *= (1 - (cpuBottleneck * 0.007));
+                    console.log('Applied CPU bottleneck effect, FPS now:', effectiveFps);
+                }
+                
+                if (gpuBottleneck > 0) {
+                    effectiveFps *= (1 - (gpuBottleneck * 0.007));
+                    console.log('Applied GPU bottleneck effect, FPS now:', effectiveFps);
+                }
+
+                // Apply refresh rate considerations
+                console.log('Advanced object:', advanced);
+                const refreshRateValue = advanced && advanced.refreshRate ? advanced.refreshRate : 144;
+                console.log('Refresh rate value:', refreshRateValue);
+                const targetFps = Math.min(refreshRateValue * 0.8, effectiveFps);
+                console.log('Target FPS:', targetFps);
+
+                // Calculate more realistic metrics
+                const avgFPS = Math.round(effectiveFps);
+                const maxFPS = Math.round(avgFPS * 1.25);
+                const onePercentLows = Math.round(avgFPS * 0.7);
+                
+                console.log('Final metrics - Avg FPS:', avgFPS, 'Max FPS:', maxFPS, '1% Lows:', onePercentLows);
+
+                const results = {
+                    cpuBottleneck: Math.max(0, Math.min(100, cpuBottleneck)),
+                    gpuBottleneck: Math.max(0, Math.min(100, gpuBottleneck)),
+                    avgFPS: Math.max(30, avgFPS),
+                    maxFPS: Math.max(40, maxFPS),
+                    onePercentLows: Math.max(25, onePercentLows),
+                    targetFPS: targetFps,
+                    cpuScore,
+                    gpuScore
+                };
+                
+                console.log('Returning results:', results);
+                return results;
+            } catch (error) {
+                console.error('Error in calculateBottleneck:', error);
+                console.error('Error stack:', error.stack);
+                throw error; // Re-throw to be caught by the event listener
+            }
+        }
+
+        // Display results
+        function displayResults(results, cpu, gpu, resolution) {
+            try {
+                // Show results section
+                resultsSection.style.display = 'block';
+
+                // Update configuration summary
+                const configSummary = document.getElementById('config-summary');
+                if (configSummary) {
+                    configSummary.innerHTML = `
+                        <p><strong>Current Configuration:</strong></p>
+                        <p>• <strong>CPU:</strong> ${cpu.name}</p>
+                        <p>• <strong>GPU:</strong> ${gpu.name}</p>
+                        <p>• <strong>Resolution:</strong> ${resolution.toUpperCase()}</p>
+                        <p>• <strong>RAM:</strong> ${document.getElementById('ram').value}GB ${document.getElementById('ram-type').value.toUpperCase()}</p>
+                        <p>• <strong>Storage:</strong> ${document.getElementById('storage').value.toUpperCase()} SSD</p>
+                        <p>• <strong>Purpose:</strong> ${document.getElementById('purpose').value.charAt(0).toUpperCase() + document.getElementById('purpose').value.slice(1)}</p>
+                    `;
+                }
+
+                // Populate Bottleneck Severity Banner
+                populateSeverityBanner(results, cpu, gpu, resolution);
+
+                // Populate Balance Meter
+                populateBalanceMeter(results, cpu, gpu);
+
+                // Populate Component Analysis
+                populateComponentAnalysis(cpu, gpu, resolution);
+
+                // Update performance metrics
+                const avgFps = document.getElementById('avg-fps');
+                const maxFps = document.getElementById('max-fps');
+                const onePercentLows = document.getElementById('one-percent-lows');
+                
+                if (avgFps) avgFps.textContent = results.avgFPS;
+                if (maxFps) maxFps.textContent = results.maxFPS;
+                if (onePercentLows) onePercentLows.textContent = results.onePercentLows;
+
+                // Create gauges
+                createGauge('cpu-gauge', results.cpuBottleneck, 'CPU');
+                createGauge('gpu-gauge', results.gpuBottleneck, 'GPU');
+
+                // Update status text
+                const cpuStatus = document.getElementById('cpu-status');
+                const gpuStatus = document.getElementById('gpu-status');
+                
+                if (cpuStatus) cpuStatus.textContent = getStatusText(results.cpuBottleneck);
+                if (gpuStatus) gpuStatus.textContent = getStatusText(results.gpuBottleneck);
+
+                // Generate recommendations
+                generateRecommendations(results, cpu, gpu);
+
+                // Scroll to results
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error displaying results:', error);
+                alert('An error occurred while displaying results. Please check the console for details.');
+            }
+        }
+
+        // Create gauge
+        function createGauge(canvasId, percentage, type) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+
+            // Destroy old chart if exists
+            if (charts[canvasId]) {
+                charts[canvasId].destroy();
+            }
+
+            // Color logic
+            let color;
+            if (percentage <= 10) {
+                color = '#4CAF50'; // Green
+            } else if (percentage <= 25) {
+                color = '#FFB300'; // Amber
+            } else {
+                color = '#E53935'; // Red
+            }
+
+            // Update center value with animation
+            const centerValueId = canvasId.replace('-gauge', '-center-value');
+            const currentValue = document.getElementById(centerValueId).textContent.replace('%', '');
+            const targetValue = percentage;
+            
+            // Animate the value
+            let start = parseFloat(currentValue) || 0;
+            const duration = 1200; // ms
+            const startTime = performance.now();
+            
+            function updateCounter(timestamp) {
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const currentValue = Math.floor(start + (targetValue - start) * progress);
+                
+                document.getElementById(centerValueId).textContent = `${currentValue}%`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+
+            // Create chart
+            charts[canvasId] = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [percentage, 100 - percentage],
+                        backgroundColor: [
+                            color,
+                            '#f0f0f0'
+                        ],
+                        borderWidth: 0,
+                        cutout: '80%',
+                        borderRadius: 14
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    rotation: -90,
+                    circumference: 180,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        duration: 1200,
+                        easing: 'easeOutCubic'
+                    }
+                }
+            });
+        }
+
+        // Get status text
+        function getStatusText(value) {
+            if (value <= 10) return 'Well Balanced';
+            if (value <= 25) return 'Mild Bottleneck';
+            return 'Significant Bottleneck';
+        }
+
+        // Generate recommendations
+        function generateRecommendations(results, cpu, gpu) {
+            const container = document.getElementById('recommendations');
+            let recommendations = [];
+
+            // Bottleneck-specific recommendations
+            if (results.cpuBottleneck > results.gpuBottleneck && results.cpuBottleneck > 15) {
+                recommendations.push({
+                    title: "CPU Bottleneck Detected",
+                    detail: `Your CPU is bottlenecking your GPU by ${results.cpuBottleneck}%. Consider upgrading to a higher-tier processor for better performance.`
+                });
+            } else if (results.gpuBottleneck > results.cpuBottleneck && results.gpuBottleneck > 15) {
+                recommendations.push({
+                    title: "GPU Bottleneck Detected",
+                    detail: `Your GPU is bottlenecking your CPU by ${results.gpuBottleneck}%. Consider upgrading to a more powerful graphics card to fully utilize your processor.`
+                });
+            } else {
+                recommendations.push({
+                    title: "Well-Balanced System",
+                    detail: "Your system is well-balanced! Both CPU and GPU are working efficiently together."
+                });
+            }
+
+            // FPS vs Refresh Rate recommendation
+            const refreshRate = parseInt(document.getElementById('refresh-rate').value);
+            if (results.avgFPS < refreshRate * 0.8) {
+                recommendations.push({
+                    title: "Low Frame Rate",
+                    detail: `Your estimated ${results.avgFPS} FPS may not fully utilize your ${refreshRate}Hz monitor. Consider lowering graphics settings or upgrading components.`
+                });
+            }
+
+            // RAM recommendation
+            const ram = parseInt(document.getElementById('ram').value);
+            if (ram < 16) {
+                recommendations.push({
+                    title: "Insufficient RAM",
+                    detail: "Consider upgrading to 16GB RAM or more for better performance in modern games."
+                });
+            }
+
+            // Resolution-specific recommendation
+            const resolution = document.getElementById('resolution').value;
+            if (resolution === '1080p' && results.gpuBottleneck > 25) {
+                recommendations.push({
+                    title: "Underutilized GPU",
+                    detail: "At 1080p, your GPU is underutilized. Consider increasing your resolution to 1440p for better GPU utilization."
+                });
+            } else if (resolution === '4k' && results.cpuBottleneck > 25) {
+                recommendations.push({
+                    title: "CPU Bottleneck at 4K",
+                    detail: "At 4K, your CPU is significantly bottlenecking your GPU. Consider lowering your resolution to 1440p for better CPU utilization."
+                });
+            }
+
+            // Game-specific recommendations
+            const gameId = document.getElementById('game').value;
+            if (gameId) {
+                const game = components.games.find(g => g.id === gameId);
+                if (game && game.cpu_intensity > 0.8 && results.cpuBottleneck > 15) {
+                    recommendations.push({
+                        title: "CPU-Intensive Game",
+                        detail: `The game "${game.name}" is particularly CPU-intensive. Consider lowering CPU-dependent settings like draw distance and population density.`
+                    });
+                }
+                
+                if (game && game.gpu_intensity > 0.8 && results.gpuBottleneck > 15) {
+                    recommendations.push({
+                        title: "GPU-Intensive Game",
+                        detail: `The game "${game.name}" is particularly GPU-intensive. Consider lowering GPU-dependent settings like texture quality and anti-aliasing.`
+                    });
+                }
+            }
+
+            // Purpose-specific recommendations
+            const purpose = document.getElementById('purpose').value;
+            if (purpose === 'streaming' && results.cpuBottleneck > 15) {
+                recommendations.push({
+                    title: "Streaming Performance",
+                    detail: "For streaming, a stronger CPU is recommended to handle both gaming and encoding simultaneously."
+                });
+            }
+
+            // Generate HTML
+            container.innerHTML = recommendations.map(rec => `
+                <div class="recommendation-item">
+                    <div class="recommendation-icon">•</div>
+                    <div class="recommendation-content">
+                        <span class="recommendation-title">${rec.title}</span>
+                        <span class="recommendation-detail">${rec.detail}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+                // Populate Severity Banner
+        function populateSeverityBanner(results, cpu, gpu, resolution) {
+            try {
+                // Get DOM elements
+                const severityBanner = document.getElementById('severity-banner');
+                const severityValue = document.getElementById('severity-value');
+                const severityTitle = document.getElementById('severity-title');
+                const severityText = document.getElementById('severity-text');
+                const severityResolution = document.getElementById('severity-resolution');
+                
+                // Check if all elements exist
+                if (!severityBanner || !severityValue || !severityTitle || !severityText || !severityResolution) {
+                    console.error('Severity banner elements not found');
+                    return;
+                }
+                
+                // Calculate overall bottleneck (higher of CPU or GPU bottleneck)
+                const overallBottleneck = Math.max(results.cpuBottleneck, results.gpuBottleneck);
+                
+                // Determine severity level
+                let severityClass = '';
+                let severityTitleText = '';
+                let severityDescription = '';
+                
+                if (overallBottleneck <= 10) {
+                    severityClass = 'severity-low';
+                    severityTitleText = 'Well Balanced System';
+                    severityDescription = 'Your CPU and GPU are well-balanced with minimal bottlenecking. Both components are working efficiently together.';
+                } else if (overallBottleneck <= 25) {
+                    severityClass = 'severity-medium';
+                    severityTitleText = 'Mild Bottleneck Detected';
+                    severityDescription = 'There is a minor imbalance between your CPU and GPU that may slightly impact performance.';
+                } else {
+                    severityClass = 'severity-high';
+                    if (results.cpuBottleneck > results.gpuBottleneck) {
+                        severityTitleText = 'Significant CPU Bottleneck';
+                        severityDescription = 'Your CPU is significantly limiting your GPU performance. Upgrading your processor would provide better overall system performance.';
+                    } else {
+                        severityTitleText = 'Significant GPU Bottleneck';
+                        severityDescription = 'Your GPU is significantly limiting your CPU performance. Upgrading your graphics card would provide better gaming performance.';
+                    }
+                }
+                
+                // Update DOM elements
+                severityBanner.className = `severity-banner ${severityClass}`;
+                severityValue.textContent = `${overallBottleneck}%`;
+                severityTitle.textContent = severityTitleText;
+                severityText.textContent = severityDescription;
+                severityResolution.textContent = `Current Resolution: ${resolution.toUpperCase()}`;
+                
+                // Show the banner
+                severityBanner.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating severity banner:', error);
+            }
+        }
+
+        // Populate Balance Meter
+        function populateBalanceMeter(results, cpu, gpu) {
+            try {
+                const balanceMeter = document.getElementById('balance-meter');
+                const meterMarker = document.getElementById('meter-marker');
+                
+                // Check if all elements exist
+                if (!balanceMeter || !meterMarker) {
+                    console.error('Balance meter elements not found');
+                    return;
+                }
+                
+                // Calculate balance point based on CPU/GPU scores
+                // Normalize to 0-100 scale where 50 is optimal balance
+                let balancePosition = 50;
+                
+                if (cpu.score > gpu.score) {
+                    // CPU dominant (left side of meter)
+                    const ratio = cpu.score / gpu.score;
+                    balancePosition = 50 - Math.min(50, (ratio - 1) * 25);
+                } else if (gpu.score > cpu.score) {
+                    // GPU dominant (right side of meter)
+                    const ratio = gpu.score / cpu.score;
+                    balancePosition = 50 + Math.min(50, (ratio - 1) * 25);
+                }
+                
+                // Position the marker
+                meterMarker.style.left = `${balancePosition}%`;
+                
+                // Show the meter
+                balanceMeter.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating balance meter:', error);
+            }
+        }
+
+        // Populate Component Analysis
+        function populateComponentAnalysis(cpu, gpu, resolution) {
+            try {
+                const componentAnalysis = document.getElementById('component-analysis');
+                
+                // Check if component analysis element exists
+                if (!componentAnalysis) {
+                    console.error('Component analysis element not found');
+                    return;
+                }
+                
+                // Populate CPU analysis
+                const cpuModel = document.getElementById('cpu-model');
+                const cpuRank = document.getElementById('cpu-rank');
+                if (cpuModel) cpuModel.textContent = cpu.name;
+                if (cpuRank) cpuRank.textContent = `Rank: #${cpu.rank}`;
+                
+                // CPU specs
+                const cpuCores = document.getElementById('cpu-cores');
+                const cpuBaseClock = document.getElementById('cpu-base-clock');
+                const cpuBoostClock = document.getElementById('cpu-boost-clock');
+                const cpuScore = document.getElementById('cpu-score');
+                
+                if (cpuCores || cpuBaseClock || cpuBoostClock || cpuScore) {
+                    const coreCount = cpu.pCoreCount && cpu.eCoreCount ? 
+                        `${cpu.pCoreCount}P+${cpu.eCoreCount}E` : 
+                        `${cpu.coreCount || 'N/A'} Cores`;
+                    if (cpuCores) cpuCores.textContent = `${coreCount} / ${cpu.threadCount || 'N/A'} Threads`;
+                    if (cpuBaseClock) cpuBaseClock.textContent = cpu.baseClock || 'N/A';
+                    if (cpuBoostClock) cpuBoostClock.textContent = cpu.boostClock || 'N/A';
+                    if (cpuScore) cpuScore.textContent = cpu.score.toLocaleString();
+                }
+                
+                // CPU assessment
+                const cpuAssessment = document.getElementById('cpu-assessment');
+                if (cpuAssessment) {
+                    let assessment = '';
+                    if (cpu.coreCount >= 8 && cpu.threadCount >= 16) {
+                        assessment = 'Excellent for multitasking and CPU-intensive applications.';
+                    } else if (cpu.coreCount >= 6 && cpu.threadCount >= 12) {
+                        assessment = 'Good performance for gaming and general productivity.';
+                    } else {
+                        assessment = 'Suitable for basic tasks and light gaming.';
+                    }
+                    cpuAssessment.textContent = assessment;
+                }
+                
+                // Populate GPU analysis
+                const gpuModel = document.getElementById('gpu-model');
+                const gpuRank = document.getElementById('gpu-rank');
+                if (gpuModel) gpuModel.textContent = gpu.name;
+                if (gpuRank) gpuRank.textContent = `Rank: #${gpu.rank}`;
+                
+                // GPU specs
+                const gpuVram = document.getElementById('gpu-vram');
+                const gpuBus = document.getElementById('gpu-bus');
+                const gpuResolution = document.getElementById('gpu-resolution');
+                const gpuScore = document.getElementById('gpu-score');
+                
+                if (gpuVram) gpuVram.textContent = gpu.vram || 'N/A';
+                if (gpuBus) gpuBus.textContent = gpu.busInterface || 'N/A';
+                
+                // Resolution impact
+                if (gpuResolution) {
+                    const resolutionKey = resolution.replace('p', '');
+                    const fps = gpu[`fps${resolutionKey}`] || 'N/A';
+                    gpuResolution.textContent = `${resolution}: ${fps} FPS`;
+                }
+                
+                if (gpuScore) gpuScore.textContent = gpu.score.toLocaleString();
+                
+                // GPU assessment
+                const gpuAssessment = document.getElementById('gpu-assessment');
+                if (gpuAssessment) {
+                    let assessment = '';
+                    if (gpu.score >= 30000) {
+                        assessment = 'High-end graphics card capable of 4K gaming and VR applications.';
+                    } else if (gpu.score >= 15000) {
+                        assessment = 'Mid-range graphics card suitable for 1440p gaming.';
+                    } else if (gpu.score >= 8000) {
+                        assessment = 'Entry-level to mid-range graphics card suitable for 1080p gaming.';
+                    } else {
+                        assessment = 'Basic graphics capabilities for general use and light gaming.';
+                    }
+                    gpuAssessment.textContent = assessment;
+                }
+                
+                // Show the analysis
+                componentAnalysis.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating component analysis:', error);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populateDropdowns();
+        });
+    </script>
+</body>
+</html>
