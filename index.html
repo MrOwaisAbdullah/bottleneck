@@ -1175,14 +1175,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        /* Optimization Tips */
-        .optimization-tips {
-            background: #21284a;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
+
 
         .analysis-container {
             display: grid;
@@ -1339,6 +1332,13 @@
                 padding: 15px !important;
             }
             
+                    /* System Configuration Analysis */
+        .system-config-analysis {
+            padding: 10px !important;
+        }
+        .system-config-analysis h3 {
+            font-size: 1.2rem;
+        }
             .status-indicator {
                 width: 36px;
                 height: 36px;
@@ -1374,6 +1374,15 @@
                 box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
                 font-size: 1.3rem; /* Consistent mobile font size */
             }
+
+                    /* Gaming Experience Prediction */
+        .gaming-prediction {
+            padding: 10px !important;
+        }
+
+        .gaming-prediction h3 {
+            font-size: 1.2rem;
+        }
         }
 
         /* Gaming Experience Prediction */
@@ -1444,68 +1453,6 @@
         .prediction-content li {
             margin: 10px 0;
             color: #e0e0e0;
-        }
-
-        /* Optimization Tips */
-        .optimization-tips {
-            background: #21284a;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .optimization-tips h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: #ffffff;
-            font-size: 1.5rem;
-            text-align: center;
-        }
-
-        .tips-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        @media (max-width: 400px) {
-            .tips-container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .tips-box {
-                text-align: left;
-            }
-        }
-        
-        .tips-box {
-            background: #181d35;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            text-align: left;
-        }
-
-        .analysis-box h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: #ffffff;
-            font-size: 1.3rem;
-            border-bottom: 2px solid #607afb;
-            padding-bottom: 10px;
-        }
-
-        .tips-box ul, .tips-box ol {
-            padding-left: 20px;
-            text-align: left;
-        }
-
-        .tips-box li {
-            margin: 10px 0;
-            color: #e0e0e0;
-            text-align: left;
         }
 
         /* Component Analysis */
@@ -2421,32 +2368,6 @@
                     </div>
                 </div>
 
-                <!-- Optimization Tips -->
-                <div id="optimization-tips" class="optimization-tips" style="display: none;">
-                    <h3>Optimization Tips</h3>
-                    <div class="tips-container">
-                        <div class="tips-box">
-                            <h4>System Optimization</h4>
-                            <div class="status-indicator status-warning" id="system-opt-status" style="margin: 0 auto 15px; width: fit-content;">⚠️</div>
-                            <ul id="system-optimization-list">
-                                <li>Update GPU drivers to latest version</li>
-                                <li>Disable unnecessary startup programs</li>
-                                <li>Enable Game Mode in Windows settings</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="tips-box">
-                            <h4>Hardware Upgrades</h4>
-                            <div class="status-indicator status-bad" id="hardware-upgrade-status" style="margin: 0 auto 15px; width: fit-content;">✗</div>
-                            <ol id="hardware-upgrade-list">
-                                <li>Increase RAM to 32GB for content creation</li>
-                                <li>Upgrade to RTX 4080 for 4K gaming</li>
-                                <li>Add 1TB NVMe SSD for more storage</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="builds-section">
                     <h3>Recommended Balanced Builds</h3>
                     <div class="builds-grid">
@@ -2900,8 +2821,6 @@
                 // Populate Gaming Experience Prediction
                 populateGamingPrediction(cpu, gpu, resolution);
 
-                // Populate Optimization Tips
-                populateOptimizationTips(results, cpu, gpu);
 
                 // Update performance metrics
                 const avgFps = document.getElementById('avg-fps');
@@ -3526,104 +3445,9 @@
             return advice;
         }
 
-        // Generate system optimization tips
-        function generateSystemOptimizationTips(cpu, gpu, purpose) {
-            const tips = [];
-            
-            // General optimization tips
-            tips.push('Update GPU drivers to latest version');
-            tips.push('Disable unnecessary startup programs');
-            tips.push('Enable Game Mode in Windows settings');
-            
-            // CPU-specific tips
-            if (cpu.coreCount >= 8) {
-                tips.push('Configure affinity for CPU-intensive applications');
-            }
-            
-            if (cpu.ddr5_support && document.getElementById('ram-type').value === 'ddr4') {
-                tips.push('Consider DDR5 RAM for better CPU performance');
-            }
-            
-            // GPU-specific tips
-            if (gpu.tdp && parseInt(gpu.tdp) > 200) {
-                tips.push('Ensure adequate power supply and cooling for GPU');
-            }
-            
-            // Purpose-specific tips
-            switch (purpose) {
-                case 'gaming':
-                    tips.push('Close background applications during gaming');
-                    tips.push('Set game priority to High in Task Manager');
-                    break;
-                case 'video-editing':
-                    tips.push('Use dedicated SSD for media cache files');
-                    tips.push('Increase virtual memory size for large projects');
-                    break;
-                case 'streaming':
-                    tips.push('Use dedicated encoding settings in streaming software');
-                    tips.push('Reserve CPU cores for streaming encoding');
-                    break;
-            }
-            
-            return tips;
-        }
 
-        // Generate hardware upgrade suggestions
-        function generateHardwareUpgradeSuggestions(results, cpu, gpu, purpose, bottleneck) {
-            const suggestions = [];
-            
-            // Bottleneck-based suggestions
-            if (results.cpuBottleneck > 25) {
-                suggestions.push('Upgrade CPU to reduce bottlenecking');
-                suggestions.push('Consider higher-tier processor with more cores');
-            } else if (results.gpuBottleneck > 25) {
-                suggestions.push('Upgrade GPU to reduce bottlenecking');
-                suggestions.push('Consider more powerful graphics card');
-            }
-            
-            // Purpose-based suggestions
-            switch (purpose) {
-                case 'video-editing':
-                    if (parseInt(document.getElementById('ram').value) < 32) {
-                        suggestions.push('Increase RAM to 32GB or more for content creation');
-                    }
-                    break;
-                case '3d-rendering':
-                    if (cpu.coreCount < 12) {
-                        suggestions.push('Upgrade to CPU with more cores for faster rendering');
-                    }
-                    break;
-                case 'streaming':
-                    if (cpu.coreCount < 8) {
-                        suggestions.push('Upgrade to CPU with more cores for better streaming performance');
-                    }
-                    break;
-            }
-            
-            // Storage suggestions
-            const storageType = document.getElementById('storage').value;
-            if (storageType === 'hdd') {
-                suggestions.push('Upgrade to NVMe SSD for faster loading times');
-            } else if (storageType === 'sata') {
-                suggestions.push('Upgrade to NVMe SSD for better system responsiveness');
-            }
-            
-            // General upgrade suggestions based on hardware age
-            if (cpu.score < 10000) {
-                suggestions.push('Consider modern CPU architecture for better performance');
-            }
-            
-            if (gpu.score < 10000) {
-                suggestions.push('Consider modern GPU architecture for better performance');
-            }
-            
-            // If system is well balanced, suggest overall upgrade
-            if (results.cpuBottleneck <= 10 && results.gpuBottleneck <= 10) {
-                suggestions.push('System is well-balanced. Consider overall upgrade for better performance');
-            }
-            
-            return suggestions;
-        }
+
+
 
         // Populate System Configuration Analysis
         function populateSystemConfigAnalysis(cpu, gpu, purpose) {
@@ -3756,66 +3580,6 @@
             }
         }
 
-        // Populate Optimization Tips
-        function populateOptimizationTips(results, cpu, gpu) {
-            try {
-                const optimizationTips = document.getElementById('optimization-tips');
-                if (!optimizationTips) {
-                    console.error('Optimization tips element not found');
-                    return;
-                }
-                
-                // Get advanced settings
-                const purpose = document.getElementById('purpose').value;
-                
-                // Generate system optimization tips
-                const systemTips = generateSystemOptimizationTips(cpu, gpu, purpose);
-                const systemTipsList = document.getElementById('system-optimization-list');
-                if (systemTipsList) {
-                    systemTipsList.innerHTML = systemTips.map(tip => `<li>${tip}</li>`).join('');
-                }
-                
-                // Update system optimization status indicator
-                const systemOptStatus = document.getElementById('system-opt-status');
-                if (systemTips.length <= 3) {
-                    systemOptStatus.className = 'status-indicator status-good';
-                    systemOptStatus.textContent = '✓';
-                } else if (systemTips.length <= 5) {
-                    systemOptStatus.className = 'status-indicator status-warning';
-                    systemOptStatus.textContent = '⚠️';
-                } else {
-                    systemOptStatus.className = 'status-indicator status-bad';
-                    systemOptStatus.textContent = '✗';
-                }
-                
-                // Generate hardware upgrade suggestions
-                const bottleneck = Math.max(results.cpuBottleneck, results.gpuBottleneck);
-                const upgradeSuggestions = generateHardwareUpgradeSuggestions(results, cpu, gpu, purpose, bottleneck);
-                const upgradeList = document.getElementById('hardware-upgrade-list');
-                if (upgradeList) {
-                    upgradeList.innerHTML = upgradeSuggestions.map((suggestion, index) => 
-                        `<li>${suggestion}</li>`).join('');
-                }
-                
-                // Update hardware upgrade status indicator
-                const hardwareUpgradeStatus = document.getElementById('hardware-upgrade-status');
-                if (upgradeSuggestions.length <= 2) {
-                    hardwareUpgradeStatus.className = 'status-indicator status-good';
-                    hardwareUpgradeStatus.textContent = '✓';
-                } else if (upgradeSuggestions.length <= 4) {
-                    hardwareUpgradeStatus.className = 'status-indicator status-warning';
-                    hardwareUpgradeStatus.textContent = '⚠️';
-                } else {
-                    hardwareUpgradeStatus.className = 'status-indicator status-bad';
-                    hardwareUpgradeStatus.textContent = '✗';
-                }
-                
-                // Show the tips
-                optimizationTips.style.display = 'block';
-            } catch (error) {
-                console.error('Error populating optimization tips:', error);
-            }
-        }
     </script>
 </body>
 </html>
