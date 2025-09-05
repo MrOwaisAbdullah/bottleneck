@@ -1175,6 +1175,348 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
+        /* Optimization Tips */
+        .optimization-tips {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .analysis-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .analysis-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .analysis-box > h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #607afb;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 10px;
+        }
+
+        .assessment-content {
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        /* System Configuration Analysis */
+        .system-config-analysis {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .system-config-analysis h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .analysis-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .analysis-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .analysis-header h4 {
+            margin: 0;
+            color: #607afb;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 5px;
+            flex: 1;
+        }
+
+        .analysis-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #607afb, #2f396a);
+        }
+
+        .ram-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .storage-icon {
+            background: linear-gradient(135deg, #27ae60, #219653);
+        }
+
+        .usage-icon {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .analysis-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .status-indicator {
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            background: #2a2e4d;
+            border: 2px solid #4a5568;
+            color: #e0e0e0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            line-height: 1; /* Ensures proper vertical alignment for emoji */
+            text-align: center; /* Ensures proper horizontal alignment for emoji */
+        }
+
+        .status-good {
+            background: linear-gradient(135deg, #2ecc71, #27ae60) !important;
+            color: white;
+            border: 2px solid #2ecc71;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+
+        .status-warning {
+            background: linear-gradient(135deg, #f1c40f, #d35400) !important;
+            color: white;
+            border: 2px solid #f1c40f;
+            box-shadow: 0 2px 8px rgba(241, 196, 15, 0.3);
+        }
+
+        .status-bad {
+            background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+            color: white;
+            border: 2px solid #e74c3c;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        @media (max-width: 400px) {
+            .analysis-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .component-analysis {
+                padding: 10px;
+            }
+            
+            .analysis-box {
+                padding: 15px !important;
+            }
+            
+            .status-indicator {
+                width: 36px;
+                height: 36px;
+                font-size: 1.3rem;
+                background: #2a2e4d;
+                border: 2px solid #4a5568;
+                color: #e0e0e0;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                line-height: 1; /* Ensures proper vertical alignment for emoji */
+                text-align: center; /* Ensures proper horizontal alignment for emoji */
+            }
+            
+            .status-good {
+                background: linear-gradient(135deg, #2ecc71, #27ae60) !important;
+                color: white;
+                border: 2px solid #2ecc71;
+                box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+                font-size: 1.3rem; /* Consistent mobile font size */
+            }
+
+            .status-warning {
+                background: linear-gradient(135deg, #f1c40f, #d35400) !important;
+                color: white;
+                border: 2px solid #f1c40f;
+                box-shadow: 0 2px 8px rgba(241, 196, 15, 0.3);
+                font-size: 1.3rem; /* Consistent mobile font size */
+            }
+
+            .status-bad {
+                background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+                color: white;
+                border: 2px solid #e74c3c;
+                box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+                font-size: 1.3rem; /* Consistent mobile font size */
+            }
+        }
+
+        /* Gaming Experience Prediction */
+        .gaming-prediction {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .gaming-prediction h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .prediction-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .prediction-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .prediction-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .prediction-box h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #607afb;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 10px;
+        }
+
+        .fps-estimate {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 15px 0;
+        }
+
+        .prediction-details p {
+            margin: 8px 0;
+            color: #e0e0e0;
+            line-height: 1.4;
+        }
+
+        .prediction-content ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .prediction-content li {
+            margin: 10px 0;
+            color: #e0e0e0;
+        }
+
+        /* Optimization Tips */
+        .optimization-tips {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .optimization-tips h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .tips-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .tips-box {
+                text-align: left;
+            }
+        }
+        
+        .tips-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+
+        .analysis-box h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 10px;
+        }
+
+        .tips-box ul, .tips-box ol {
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .tips-box li {
+            margin: 10px 0;
+            color: #e0e0e0;
+            text-align: left;
+        }
+
+        /* Component Analysis */
+        .component-analysis {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
         .analysis-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1187,21 +1529,225 @@
                 gap: 15px;
             }
 
-                    .component-analysis {
-            padding: 10px;
-
-        }
+            .component-analysis {
+                padding: 10px;
+            }
             
             .analysis-box {
-                padding: 10px !important;
+                padding: 15px !important;
+            }
+            
+            .status-indicator {
+                width: 36px;
+                height: 36px;
+                font-size: 1.3rem;
+                background: #2a2e4d;
+                border: 2px solid #4a5568;
+                color: #e0e0e0;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                line-height: 1; /* Ensures proper vertical alignment for emoji */
+                text-align: center; /* Ensures proper horizontal alignment for emoji */
+            }
+            
+            .status-indicator.status-good {
+                background: linear-gradient(135deg, #2ecc71, #27ae60);
+                color: white;
+                border: 2px solid #2ecc71;
+                box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+                font-size: 1.3rem; /* Consistent mobile font size */
+            }
+
+            .status-indicator.status-warning {
+                background: linear-gradient(135deg, #f1c40f, #d35400);
+                color: white;
+                border: 2px solid #f1c40f;
+                box-shadow: 0 2px 8px rgba(241, 196, 15, 0.3);
+                font-size: 1.3rem; /* Consistent mobile font size */
+            }
+
+            .status-indicator.status-bad {
+                background: linear-gradient(135deg, #e74c3c, #c0392b);
+                color: white;
+                border: 2px solid #e74c3c;
+                box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+                font-size: 1.3rem; /* Consistent mobile font size */
             }
         }
 
-        .analysis-box {
+        .analysis-icon {
+            width: 36px;
+            height: 36px;
+        }
+        
+        .analysis-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .status-indicator {
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            background: #2a2e4d;
+            border: 2px solid #4a5568;
+            color: #e0e0e0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            line-height: 1; /* Ensures proper vertical alignment for emoji */
+            text-align: center; /* Ensures proper horizontal alignment for emoji */
+        }
+
+        .status-indicator.status-good {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: 2px solid #2ecc71;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+
+        .status-indicator.status-warning {
+            background: linear-gradient(135deg, #f1c40f, #d35400);
+            color: white;
+            border: 2px solid #f1c40f;
+            box-shadow: 0 2px 8px rgba(241, 196, 15, 0.3);
+        }
+
+        .status-indicator.status-bad {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: 2px solid #e74c3c;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .gaming-prediction {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .gaming-prediction h3 {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .component-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        .component-header h4 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 1.2rem;
+        }
+
+        .component-rank {
+            background: #607afb;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 400px) {
+            .component-rank {
+                font-size: 0.75rem;
+                padding: 3px 8px;
+            }
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            margin-bottom: 3px;
+        }
+
+        @media (max-width: 400px) {
+            .spec-label {
+                font-size: 0.8rem;
+            }
+            
+            .spec-value {
+                font-size: 0.9rem;
+            }
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .performance-assessment {
+            border-top: 1px solid #2f396a;
+            padding-top: 15px;
+        }
+
+        @media (max-width: 400px) {
+            .performance-assessment {
+                padding-top: 10px;
+            }
+            
+            .assessment-header {
+                font-size: 0.9rem;
+            }
+        }
+
+        .assessment-header {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .assessment-content {
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 400px) {
+            .tips-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .tips-box {
+                text-align: center;
+            }
+        }
+        
+        .tips-box {
             background: #181d35;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            text-align: center;
         }
 
         .analysis-box h3 {
@@ -1524,11 +2070,6 @@
                                 </label>
                                 <select id="game">
                                     <option value="">General Gaming</option>
-                                    <option value="cyberpunk-2077">Cyberpunk 2077</option>
-                                    <option value="cs2">Counter-Strike 2</option>
-                                    <option value="valorant">Valorant</option>
-                                    <option value="alan-wake-2">Alan Wake 2</option>
-                                    <option value="fortnite">Fortnite</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -1746,6 +2287,166 @@
                     </div>
                 </div>
 
+                <!-- System Configuration Analysis -->
+                <div id="system-config-analysis" class="system-config-analysis" style="display: none;">
+                    <h3>System Configuration Analysis</h3>
+                    <div class="analysis-container">
+                        <div class="analysis-box">
+                            <div class="analysis-header">
+                                <div class="analysis-icon ram-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 6H20V10H4V6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M4 14H20V18H4V14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 10V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        <path d="M15 10V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h4>RAM Analysis</h4>
+                            </div>
+                            <div class="analysis-content">
+                                <div id="ram-status-indicator" class="status-indicator status-warning">⚠️</div>
+                                <div class="analysis-details">
+                                    <h5 id="ram-amount-type">16GB DDR4</h5>
+                                    <p id="ram-analysis-text">Sufficient for gaming and general productivity</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-box">
+                            <div class="analysis-header">
+                                <div class="analysis-icon storage-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V7C3 5.89543 3.89543 5 5 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 11H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7 15H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h4>Storage Analysis</h4>
+                            </div>
+                            <div class="analysis-content">
+                                <div id="storage-status-indicator" class="status-indicator status-warning">⚠️</div>
+                                <div class="analysis-details">
+                                    <h5 id="storage-type">NVMe SSD</h5>
+                                    <p id="storage-analysis-text">Fast loading times but consider larger capacity</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-box">
+                            <div class="analysis-header">
+                                <div class="analysis-icon usage-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h4>Usage Match</h4>
+                            </div>
+                            <div class="analysis-content">
+                                <div id="usage-status-indicator" class="status-indicator status-warning">⚠️</div>
+                                <div class="analysis-details">
+                                    <h5 id="usage-purpose">Gaming</h5>
+                                    <p id="usage-analysis-text">Well-matched for gaming performance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gaming Experience Prediction -->
+                <div id="gaming-prediction" class="gaming-prediction" style="display: none;">
+                    <h3>Gaming Experience Prediction</h3>
+                    <div class="prediction-container">
+                        <div class="prediction-box">
+                            <div class="prediction-header">
+                                <div class="prediction-icon esports-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 8L16 12L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h4>eSports Games</h4>
+                            </div>
+                            <div class="prediction-content">
+                                <div class="status-indicator status-good" id="esports-status">✓</div>
+                                <div id="esports-fps" class="fps-estimate">185 FPS</div>
+                                <div class="prediction-details">
+                                    <p id="esports-performance">Excellent performance for competitive gaming</p>
+                                    <p id="esports-settings">Settings: High, 1080p</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="prediction-box">
+                            <div class="prediction-header">
+                                <div class="prediction-icon aaa-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3 9H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 21V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h4>AAA Games</h4>
+                            </div>
+                            <div class="prediction-content">
+                                <div class="status-indicator status-good" id="aaa-status">✓</div>
+                                <div id="aaa-fps" class="fps-estimate">95 FPS</div>
+                                <div class="prediction-details">
+                                    <p id="aaa-performance">Great performance for demanding titles</p>
+                                    <p id="aaa-settings">Settings: Medium-High, 1440p</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="prediction-box">
+                            <div class="prediction-header">
+                                <div class="prediction-icon settings-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M19.4 15C19.2654 15.6428 18.9772 16.2405 18.56 16.74L19.96 19.36L17.34 20.76L15.94 18.14C15.4405 18.5572 14.8428 18.8454 14.2 18.98L14 21.8L10 21.8L9.8 18.98C9.15719 18.8454 8.5595 18.5572 8.06 18.14L6.66 20.76L4.04 19.36L5.44 16.74C5.02284 16.2405 4.7346 15.6428 4.6 15L1.78 15L1.78 11L4.6 11C4.7346 10.3572 5.02284 9.7595 5.44 9.26L4.04 6.64L6.66 5.24L8.06 7.86C8.5595 7.44284 9.15719 7.1546 9.8 7L10 4.18L14 4.18L14.2 7C14.8428 7.1546 15.4405 7.44284 15.94 7.86L17.34 5.24L19.96 6.64L18.56 9.26C18.9772 9.7595 19.2654 10.3572 19.4 11L22.22 11L22.22 15L19.4 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h4>Settings Advice</h4>
+                            </div>
+                            <div class="prediction-content">
+                                <ul id="settings-advice-list">
+                                    <li>Texture Quality: High</li>
+                                    <li>Shadow Quality: Medium</li>
+                                    <li>Anti-Aliasing: FXAA</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optimization Tips -->
+                <div id="optimization-tips" class="optimization-tips" style="display: none;">
+                    <h3>Optimization Tips</h3>
+                    <div class="tips-container">
+                        <div class="tips-box">
+                            <h4>System Optimization</h4>
+                            <div class="status-indicator status-warning" id="system-opt-status" style="margin: 0 auto 15px; width: fit-content;">⚠️</div>
+                            <ul id="system-optimization-list">
+                                <li>Update GPU drivers to latest version</li>
+                                <li>Disable unnecessary startup programs</li>
+                                <li>Enable Game Mode in Windows settings</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tips-box">
+                            <h4>Hardware Upgrades</h4>
+                            <div class="status-indicator status-bad" id="hardware-upgrade-status" style="margin: 0 auto 15px; width: fit-content;">✗</div>
+                            <ol id="hardware-upgrade-list">
+                                <li>Increase RAM to 32GB for content creation</li>
+                                <li>Upgrade to RTX 4080 for 4K gaming</li>
+                                <li>Add 1TB NVMe SSD for more storage</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="builds-section">
                     <h3>Recommended Balanced Builds</h3>
                     <div class="builds-grid">
@@ -1824,22 +2525,56 @@
 
         // Populate dropdowns
         function populateDropdowns() {
-            // Populate CPUs
-            components.cpus.forEach(cpu => {
-                const option = document.createElement('option');
-                option.value = cpu.id;
-                option.textContent = `${cpu.name} (Rank: ${cpu.rank})`;
-                cpuSelect.appendChild(option);
-            });
+            try {
+                // Check if components data is available
+                if (!window.components) {
+                    console.error('Components data not found');
+                    return;
+                }
 
-            // Populate GPUs
-            components.gpus.forEach(gpu => {
-                const option = document.createElement('option');
-                option.value = gpu.id;
-                option.textContent = `${gpu.name} (Rank: ${gpu.rank})`;
-                gpuSelect.appendChild(option);
-            });
+                // Populate CPUs
+                if (components.cpus && cpuSelect) {
+                    components.cpus.forEach(cpu => {
+                        const option = document.createElement('option');
+                        option.value = cpu.id;
+                        option.textContent = `${cpu.name} (Rank: ${cpu.rank})`;
+                        cpuSelect.appendChild(option);
+                    });
+                }
+
+                // Populate GPUs
+                if (components.gpus && gpuSelect) {
+                    components.gpus.forEach(gpu => {
+                        const option = document.createElement('option');
+                        option.value = gpu.id;
+                        option.textContent = `${gpu.name} (Rank: ${gpu.rank})`;
+                        gpuSelect.appendChild(option);
+                    });
+                }
+
+                // Populate Games
+                const gameSelect = document.getElementById('game');
+                if (components.games && gameSelect) {
+                    // Clear existing options except the first one (General Gaming)
+                    gameSelect.innerHTML = '<option value="">General Gaming</option>';
+                    
+                    // Populate with games from data.js
+                    components.games.forEach(game => {
+                        const option = document.createElement('option');
+                        option.value = game.id;
+                        option.textContent = game.name;
+                        gameSelect.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error populating dropdowns:', error);
+            }
         }
+
+        // Initialize dropdowns when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            populateDropdowns();
+        });
 
         // Toggle advanced options
         toggleBtn.addEventListener('click', function() {
@@ -2157,6 +2892,16 @@
 
                 // Populate Component Analysis
                 populateComponentAnalysis(cpu, gpu, resolution);
+
+                // Populate System Configuration Analysis
+                const purpose = document.getElementById('purpose').value;
+                populateSystemConfigAnalysis(cpu, gpu, purpose);
+
+                // Populate Gaming Experience Prediction
+                populateGamingPrediction(cpu, gpu, resolution);
+
+                // Populate Optimization Tips
+                populateOptimizationTips(results, cpu, gpu);
 
                 // Update performance metrics
                 const avgFps = document.getElementById('avg-fps');
@@ -2554,10 +3299,523 @@
             }
         }
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            populateDropdowns();
-        });
+        // Analyze RAM configuration
+        function analyzeRAM(ramAmount, ramType, purpose) {
+            let status = '⚠️';
+            let analysisText = '';
+            
+            // Define minimum recommended RAM based on purpose
+            const minRAM = {
+                'gaming': 16,
+                'video-editing': 32,
+                '3d-rendering': 32,
+                'streaming': 32,
+                'productivity': 16
+            };
+            
+            const recommended = minRAM[purpose] || 16;
+            
+            if (ramAmount >= recommended) {
+                status = '✓';
+                analysisText = `Sufficient for ${purpose.replace('-', ' ')} tasks`;
+            } else if (ramAmount >= recommended * 0.75) {
+                status = '⚠️';
+                analysisText = `Adequate but consider upgrading to ${recommended}GB for optimal ${purpose.replace('-', ' ')} performance`;
+            } else {
+                status = '✗';
+                analysisText = `Insufficient for ${purpose.replace('-', ' ')}. Recommend upgrading to at least ${recommended}GB`;
+            }
+            
+            // RAM type impact
+            if (ramType === 'ddr5' && cpu.ddr5_support) {
+                analysisText += '. DDR5 provides better performance than DDR4 on compatible systems.';
+            }
+            
+            return { status, analysisText };
+        }
+
+        // Analyze storage configuration
+        function analyzeStorage(storageType) {
+            let status = '⚠️';
+            let analysisText = '';
+            
+            switch (storageType) {
+                case 'nvme':
+                    status = '✓';
+                    analysisText = 'Excellent performance with fastest loading times';
+                    break;
+                case 'sata':
+                    status = '⚠️';
+                    analysisText = 'Good performance but slower than NVMe SSD';
+                    break;
+                case 'hdd':
+                    status = '✗';
+                    analysisText = 'Significant impact on loading times and system responsiveness';
+                    break;
+                default:
+                    status = '⚠️';
+                    analysisText = 'Consider upgrading to NVMe SSD for better performance';
+            }
+            
+            return { status, analysisText };
+        }
+
+        // Analyze usage match
+        function analyzeUsageMatch(cpu, gpu, purpose) {
+            let status = '⚠️';
+            let analysisText = '';
+            
+            // Define purpose requirements
+            const purposeRequirements = {
+                'gaming': { cpu: 0.5, gpu: 0.7 },           // Balanced
+                'video-editing': { cpu: 0.8, gpu: 0.4 },    // CPU-heavy
+                '3d-rendering': { cpu: 0.7, gpu: 0.5 },     // CPU-heavy with GPU acceleration
+                'streaming': { cpu: 0.9, gpu: 0.3 },        // CPU-heavy
+                'productivity': { cpu: 0.6, gpu: 0.2 }      // Balanced, CPU-focused
+            };
+            
+            const requirements = purposeRequirements[purpose] || purposeRequirements['gaming'];
+            
+            // Normalize scores for comparison
+            const totalScore = cpu.score + gpu.score;
+            const cpuRatio = cpu.score / totalScore;
+            const gpuRatio = gpu.score / totalScore;
+            
+            // Check if system matches purpose requirements
+            const cpuMatch = cpuRatio >= requirements.cpu * 0.8;
+            const gpuMatch = gpuRatio >= requirements.gpu * 0.8;
+            
+            if (cpuMatch && gpuMatch) {
+                status = '✓';
+                analysisText = `Well-matched for ${purpose.replace('-', ' ')} performance`;
+            } else if (cpuMatch || gpuMatch) {
+                status = '⚠️';
+                if (!cpuMatch) {
+                    analysisText = `CPU is underpowered for ${purpose.replace('-', ' ')}. Consider a stronger processor.`;
+                } else {
+                    analysisText = `GPU is underpowered for ${purpose.replace('-', ' ')}. Consider a more powerful graphics card.`;
+                }
+            } else {
+                status = '✗';
+                analysisText = `System is not well-suited for ${purpose.replace('-', ' ')}. Significant upgrades needed.`;
+            }
+            
+            return { status, analysisText };
+        }
+
+        // Predict eSports performance
+        function predictEsportsPerformance(cpu, gpu, refreshRate) {
+            // eSports games are typically CPU-intensive
+            // Estimate FPS based on CPU performance with some GPU contribution
+            const baseFPS = Math.min(cpu.score / 80, gpu.score / 60);
+            let estimatedFPS = baseFPS;
+            
+            // Adjust for refresh rate
+            if (refreshRate >= 240) {
+                // High refresh rate displays need consistent FPS
+                estimatedFPS = Math.min(estimatedFPS, refreshRate * 0.9);
+            } else if (refreshRate >= 144) {
+                // Standard high refresh rate
+                estimatedFPS = Math.min(estimatedFPS, refreshRate * 0.95);
+            }
+            
+            // Ensure reasonable minimum
+            estimatedFPS = Math.max(60, Math.round(estimatedFPS));
+            
+            let performanceText = '';
+            if (estimatedFPS >= 200) {
+                performanceText = 'Excellent performance for competitive gaming';
+            } else if (estimatedFPS >= 144) {
+                performanceText = 'Great performance for competitive gaming';
+            } else if (estimatedFPS >= 100) {
+                performanceText = 'Good performance for competitive gaming';
+            } else {
+                performanceText = 'May experience frame drops in competitive scenarios';
+            }
+            
+            const settingsText = `Settings: High, ${refreshRate}Hz`;
+            
+            return { estimatedFPS, performanceText, settingsText };
+        }
+
+        // Predict AAA game performance
+        function predictAAAPerformance(cpu, gpu, resolution) {
+            // AAA games are typically GPU-intensive
+            // Use the GPU's resolution-specific FPS data
+            const resolutionKey = resolution.replace('p', '');
+            let estimatedFPS = gpu[`fps${resolutionKey}`] || 60;
+            
+            // Adjust for CPU performance (CPU can limit GPU performance)
+            const cpuFactor = Math.min(1.2, cpu.score / 10000);
+            estimatedFPS = Math.round(estimatedFPS * (0.7 + 0.3 * cpuFactor));
+            
+            // Ensure reasonable minimum
+            estimatedFPS = Math.max(30, estimatedFPS);
+            
+            let performanceText = '';
+            if (estimatedFPS >= 100) {
+                performanceText = 'Excellent performance for demanding titles';
+            } else if (estimatedFPS >= 70) {
+                performanceText = 'Great performance for demanding titles';
+            } else if (estimatedFPS >= 50) {
+                performanceText = 'Playable performance for demanding titles';
+            } else {
+                performanceText = 'May need to lower settings for smooth gameplay';
+            }
+            
+            const settingsText = `Settings: ${resolution === '4k' ? 'High' : 'Ultra'}, ${resolution}`;
+            
+            return { estimatedFPS, performanceText, settingsText };
+        }
+
+        // Generate settings advice
+        function generateSettingsAdvice(cpu, gpu, resolution, purpose) {
+            const advice = [];
+            
+            // Base settings recommendation based on hardware tier
+            const totalScore = cpu.score + gpu.score;
+            let baseSetting = 'Medium';
+            
+            if (totalScore > 40000) {
+                baseSetting = 'Ultra';
+            } else if (totalScore > 25000) {
+                baseSetting = 'High';
+            } else if (totalScore > 15000) {
+                baseSetting = 'Medium-High';
+            }
+            
+            advice.push(`Base Quality: ${baseSetting}`);
+            
+            // Resolution-specific advice
+            if (resolution === '4k' && gpu.score < 25000) {
+                advice.push('Consider lowering resolution for better performance');
+            } else if (resolution === '1080p' && gpu.score > 30000) {
+                advice.push('Consider increasing resolution to better utilize GPU');
+            }
+            
+            // Purpose-specific advice
+            switch (purpose) {
+                case 'gaming':
+                    advice.push('Focus on balanced settings for optimal gameplay');
+                    break;
+                case 'video-editing':
+                    advice.push('Prioritize CPU-intensive settings like preview quality');
+                    break;
+                case 'streaming':
+                    advice.push('Reserve CPU resources for encoding, lower game settings if needed');
+                    break;
+                default:
+                    advice.push('Adjust settings based on your primary use case');
+            }
+            
+            // Specific settings
+            if (gpu.ray_tracing_multiplier && gpu.ray_tracing_multiplier > 0.8) {
+                advice.push('Ray Tracing: Enabled (Quality)');
+            } else if (gpu.ray_tracing_multiplier && gpu.ray_tracing_multiplier > 0.5) {
+                advice.push('Ray Tracing: Enabled (Performance)');
+            } else {
+                advice.push('Ray Tracing: Disabled for better performance');
+            }
+            
+            if (gpu.dlss_impact && gpu.dlss_impact > 1.2) {
+                advice.push('DLSS/FSR: Enabled for significant performance boost');
+            } else if (gpu.dlss_impact && gpu.dlss_impact > 1.0) {
+                advice.push('DLSS/FSR: Enabled for performance improvement');
+            }
+            
+            return advice;
+        }
+
+        // Generate system optimization tips
+        function generateSystemOptimizationTips(cpu, gpu, purpose) {
+            const tips = [];
+            
+            // General optimization tips
+            tips.push('Update GPU drivers to latest version');
+            tips.push('Disable unnecessary startup programs');
+            tips.push('Enable Game Mode in Windows settings');
+            
+            // CPU-specific tips
+            if (cpu.coreCount >= 8) {
+                tips.push('Configure affinity for CPU-intensive applications');
+            }
+            
+            if (cpu.ddr5_support && document.getElementById('ram-type').value === 'ddr4') {
+                tips.push('Consider DDR5 RAM for better CPU performance');
+            }
+            
+            // GPU-specific tips
+            if (gpu.tdp && parseInt(gpu.tdp) > 200) {
+                tips.push('Ensure adequate power supply and cooling for GPU');
+            }
+            
+            // Purpose-specific tips
+            switch (purpose) {
+                case 'gaming':
+                    tips.push('Close background applications during gaming');
+                    tips.push('Set game priority to High in Task Manager');
+                    break;
+                case 'video-editing':
+                    tips.push('Use dedicated SSD for media cache files');
+                    tips.push('Increase virtual memory size for large projects');
+                    break;
+                case 'streaming':
+                    tips.push('Use dedicated encoding settings in streaming software');
+                    tips.push('Reserve CPU cores for streaming encoding');
+                    break;
+            }
+            
+            return tips;
+        }
+
+        // Generate hardware upgrade suggestions
+        function generateHardwareUpgradeSuggestions(results, cpu, gpu, purpose, bottleneck) {
+            const suggestions = [];
+            
+            // Bottleneck-based suggestions
+            if (results.cpuBottleneck > 25) {
+                suggestions.push('Upgrade CPU to reduce bottlenecking');
+                suggestions.push('Consider higher-tier processor with more cores');
+            } else if (results.gpuBottleneck > 25) {
+                suggestions.push('Upgrade GPU to reduce bottlenecking');
+                suggestions.push('Consider more powerful graphics card');
+            }
+            
+            // Purpose-based suggestions
+            switch (purpose) {
+                case 'video-editing':
+                    if (parseInt(document.getElementById('ram').value) < 32) {
+                        suggestions.push('Increase RAM to 32GB or more for content creation');
+                    }
+                    break;
+                case '3d-rendering':
+                    if (cpu.coreCount < 12) {
+                        suggestions.push('Upgrade to CPU with more cores for faster rendering');
+                    }
+                    break;
+                case 'streaming':
+                    if (cpu.coreCount < 8) {
+                        suggestions.push('Upgrade to CPU with more cores for better streaming performance');
+                    }
+                    break;
+            }
+            
+            // Storage suggestions
+            const storageType = document.getElementById('storage').value;
+            if (storageType === 'hdd') {
+                suggestions.push('Upgrade to NVMe SSD for faster loading times');
+            } else if (storageType === 'sata') {
+                suggestions.push('Upgrade to NVMe SSD for better system responsiveness');
+            }
+            
+            // General upgrade suggestions based on hardware age
+            if (cpu.score < 10000) {
+                suggestions.push('Consider modern CPU architecture for better performance');
+            }
+            
+            if (gpu.score < 10000) {
+                suggestions.push('Consider modern GPU architecture for better performance');
+            }
+            
+            // If system is well balanced, suggest overall upgrade
+            if (results.cpuBottleneck <= 10 && results.gpuBottleneck <= 10) {
+                suggestions.push('System is well-balanced. Consider overall upgrade for better performance');
+            }
+            
+            return suggestions;
+        }
+
+        // Populate System Configuration Analysis
+        function populateSystemConfigAnalysis(cpu, gpu, purpose) {
+            try {
+                const systemConfigAnalysis = document.getElementById('system-config-analysis');
+                if (!systemConfigAnalysis) {
+                    console.error('System configuration analysis element not found');
+                    return;
+                }
+                
+                // Get advanced settings
+                const ramAmount = parseInt(document.getElementById('ram').value);
+                const ramType = document.getElementById('ram-type').value;
+                const storageType = document.getElementById('storage').value;
+                
+                // Analyze RAM
+                const ramAnalysis = analyzeRAM(ramAmount, ramType, purpose);
+                const ramStatusIndicator = document.getElementById('ram-status-indicator');
+                ramStatusIndicator.textContent = ramAnalysis.status;
+                // Add appropriate class based on status
+                if (ramAnalysis.status === '✓') {
+                    ramStatusIndicator.className = 'status-indicator status-good';
+                } else if (ramAnalysis.status === '⚠️') {
+                    ramStatusIndicator.className = 'status-indicator status-warning';
+                } else {
+                    ramStatusIndicator.className = 'status-indicator status-bad';
+                }
+                document.getElementById('ram-amount-type').textContent = `${ramAmount}GB ${ramType.toUpperCase()}`;
+                document.getElementById('ram-analysis-text').textContent = ramAnalysis.analysisText;
+                
+                // Analyze Storage
+                const storageAnalysis = analyzeStorage(storageType);
+                const storageStatusIndicator = document.getElementById('storage-status-indicator');
+                storageStatusIndicator.textContent = storageAnalysis.status;
+                // Add appropriate class based on status
+                if (storageAnalysis.status === '✓') {
+                    storageStatusIndicator.className = 'status-indicator status-good';
+                } else if (storageAnalysis.status === '⚠️') {
+                    storageStatusIndicator.className = 'status-indicator status-warning';
+                } else {
+                    storageStatusIndicator.className = 'status-indicator status-bad';
+                }
+                document.getElementById('storage-type').textContent = storageType.toUpperCase() + ' SSD';
+                document.getElementById('storage-analysis-text').textContent = storageAnalysis.analysisText;
+                
+                // Analyze Usage Match
+                const usageAnalysis = analyzeUsageMatch(cpu, gpu, purpose);
+                const usageStatusIndicator = document.getElementById('usage-status-indicator');
+                usageStatusIndicator.textContent = usageAnalysis.status;
+                // Add appropriate class based on status
+                if (usageAnalysis.status === '✓') {
+                    usageStatusIndicator.className = 'status-indicator status-good';
+                } else if (usageAnalysis.status === '⚠️') {
+                    usageStatusIndicator.className = 'status-indicator status-warning';
+                } else {
+                    usageStatusIndicator.className = 'status-indicator status-bad';
+                }
+                document.getElementById('usage-purpose').textContent = purpose.charAt(0).toUpperCase() + purpose.slice(1).replace('-', ' ');
+                document.getElementById('usage-analysis-text').textContent = usageAnalysis.analysisText;
+                
+                // Show the analysis
+                systemConfigAnalysis.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating system configuration analysis:', error);
+            }
+        }
+
+        // Populate Gaming Experience Prediction
+        function populateGamingPrediction(cpu, gpu, resolution) {
+            try {
+                const gamingPrediction = document.getElementById('gaming-prediction');
+                if (!gamingPrediction) {
+                    console.error('Gaming prediction element not found');
+                    return;
+                }
+                
+                // Get advanced settings
+                const refreshRate = parseInt(document.getElementById('refresh-rate').value);
+                const purpose = document.getElementById('purpose').value;
+                
+                // Predict eSports performance
+                const esportsPrediction = predictEsportsPerformance(cpu, gpu, refreshRate);
+                document.getElementById('esports-fps').textContent = `${esportsPrediction.estimatedFPS} FPS`;
+                document.getElementById('esports-performance').textContent = esportsPrediction.performanceText;
+                document.getElementById('esports-settings').textContent = esportsPrediction.settingsText;
+                
+                // Update eSports status indicator
+                const esportsStatus = document.getElementById('esports-status');
+                if (esportsPrediction.estimatedFPS >= 144) {
+                    esportsStatus.className = 'status-indicator status-good';
+                    esportsStatus.textContent = '✓';
+                } else if (esportsPrediction.estimatedFPS >= 100) {
+                    esportsStatus.className = 'status-indicator status-warning';
+                    esportsStatus.textContent = '⚠️';
+                } else {
+                    esportsStatus.className = 'status-indicator status-bad';
+                    esportsStatus.textContent = '✗';
+                }
+                
+                // Predict AAA performance
+                const aaaPrediction = predictAAAPerformance(cpu, gpu, resolution);
+                document.getElementById('aaa-fps').textContent = `${aaaPrediction.estimatedFPS} FPS`;
+                document.getElementById('aaa-performance').textContent = aaaPrediction.performanceText;
+                document.getElementById('aaa-settings').textContent = aaaPrediction.settingsText;
+                
+                // Update AAA status indicator
+                const aaaStatus = document.getElementById('aaa-status');
+                if (aaaPrediction.estimatedFPS >= 70) {
+                    aaaStatus.className = 'status-indicator status-good';
+                    aaaStatus.textContent = '✓';
+                } else if (aaaPrediction.estimatedFPS >= 50) {
+                    aaaStatus.className = 'status-indicator status-warning';
+                    aaaStatus.textContent = '⚠️';
+                } else {
+                    aaaStatus.className = 'status-indicator status-bad';
+                    aaaStatus.textContent = '✗';
+                }
+                
+                // Generate settings advice
+                const settingsAdvice = generateSettingsAdvice(cpu, gpu, resolution, purpose);
+                const settingsList = document.getElementById('settings-advice-list');
+                if (settingsList) {
+                    settingsList.innerHTML = settingsAdvice.map(advice => `<li>${advice}</li>`).join('');
+                }
+                
+                // Show the prediction
+                gamingPrediction.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating gaming prediction:', error);
+            }
+        }
+
+        // Populate Optimization Tips
+        function populateOptimizationTips(results, cpu, gpu) {
+            try {
+                const optimizationTips = document.getElementById('optimization-tips');
+                if (!optimizationTips) {
+                    console.error('Optimization tips element not found');
+                    return;
+                }
+                
+                // Get advanced settings
+                const purpose = document.getElementById('purpose').value;
+                
+                // Generate system optimization tips
+                const systemTips = generateSystemOptimizationTips(cpu, gpu, purpose);
+                const systemTipsList = document.getElementById('system-optimization-list');
+                if (systemTipsList) {
+                    systemTipsList.innerHTML = systemTips.map(tip => `<li>${tip}</li>`).join('');
+                }
+                
+                // Update system optimization status indicator
+                const systemOptStatus = document.getElementById('system-opt-status');
+                if (systemTips.length <= 3) {
+                    systemOptStatus.className = 'status-indicator status-good';
+                    systemOptStatus.textContent = '✓';
+                } else if (systemTips.length <= 5) {
+                    systemOptStatus.className = 'status-indicator status-warning';
+                    systemOptStatus.textContent = '⚠️';
+                } else {
+                    systemOptStatus.className = 'status-indicator status-bad';
+                    systemOptStatus.textContent = '✗';
+                }
+                
+                // Generate hardware upgrade suggestions
+                const bottleneck = Math.max(results.cpuBottleneck, results.gpuBottleneck);
+                const upgradeSuggestions = generateHardwareUpgradeSuggestions(results, cpu, gpu, purpose, bottleneck);
+                const upgradeList = document.getElementById('hardware-upgrade-list');
+                if (upgradeList) {
+                    upgradeList.innerHTML = upgradeSuggestions.map((suggestion, index) => 
+                        `<li>${suggestion}</li>`).join('');
+                }
+                
+                // Update hardware upgrade status indicator
+                const hardwareUpgradeStatus = document.getElementById('hardware-upgrade-status');
+                if (upgradeSuggestions.length <= 2) {
+                    hardwareUpgradeStatus.className = 'status-indicator status-good';
+                    hardwareUpgradeStatus.textContent = '✓';
+                } else if (upgradeSuggestions.length <= 4) {
+                    hardwareUpgradeStatus.className = 'status-indicator status-warning';
+                    hardwareUpgradeStatus.textContent = '⚠️';
+                } else {
+                    hardwareUpgradeStatus.className = 'status-indicator status-bad';
+                    hardwareUpgradeStatus.textContent = '✗';
+                }
+                
+                // Show the tips
+                optimizationTips.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating optimization tips:', error);
+            }
+        }
     </script>
 </body>
 </html>
