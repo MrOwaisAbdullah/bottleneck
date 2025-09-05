@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Fix</title>
+</head>
+<body>
+    <h1>Test Fix for Data Loading</h1>
+    <p>If you see this message, the HTML is working.</p>
+    
+    <!-- Load external data file -->
+    <script src="data.js"></script>
+    
+    <script>
+        // Test if components are loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            console.log('Components loaded:', window.components);
+            
+            if (window.components) {
+                console.log('CPUs count:', window.components.cpus.length);
+                console.log('GPUs count:', window.components.gpus.length);
+                console.log('Games count:', window.components.games.length);
+                document.body.innerHTML += '<p style="color: green;">Data loaded successfully! Check console for details.</p>';
+            } else {
+                console.error('Components not loaded');
+                document.body.innerHTML += '<p style="color: red;">Data loading failed!</p>';
+            }
+        });
+    </script>
+</body>
+</html>

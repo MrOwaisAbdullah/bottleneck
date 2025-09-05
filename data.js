@@ -14,7 +14,7 @@ const components = {
     { id: "i5-14600k", name: "Intel Core i5-14600K", score: 39600, rank: 5, coreCount: 14, pCoreCount: 6, eCoreCount: 8, threadCount: 20, baseClock: "3.5 GHz", boostClock: "5.3 GHz", tdp: "125W (181W MTP)", ddr4_support: true, ddr5_support: true, pcie_version: "5.0", freshness: "2025-Q3", release_date: "2023-10-17", status: "available" },
     { id: "i7-12700k", name: "Intel Core i7-12700K", score: 34380, rank: 9, coreCount: 12, pCoreCount: 8, eCoreCount: 4, threadCount: 20, baseClock: "3.6 GHz", boostClock: "5.0 GHz", tdp: "125W (190W MTP)", ddr4_support: true, ddr5_support: true, pcie_version: "5.0", freshness: "2025-Q3", release_date: "2021-11-04", status: "available" },
     { id: "i9-13900k", name: "Intel Core i9-13900K", score: 58521, rank: 4, coreCount: 24, pCoreCount: 8, eCoreCount: 16, threadCount: 32, baseClock: "3.0 GHz", boostClock: "5.8 GHz", tdp: "125W (253W MTP)", ddr4_support: true, ddr5_support: true, pcie_version: "5.0", freshness: "2025-Q3", release_date: "2022-10-20", status: "available" },
-    { id: "i9-14900k", name: "Intel Core i9-14900K", score: 59500, rank: 2, coreCount: 24, pCoreCount: 8, eCoreCount: 16, threadCount: 32, baseClock: "3.2 GHz", boostClock: "6.0 GHz", tdp: "125W (253W MTP)", ddr4_support: true, ddr5_support: true, pcie_version: "5.0", release_date: "2023-10-17", status: "available" },
+    { id: "i9-14900k", name: "Intel Core i9-14900K", score: 59500, rank: 2, coreCount: 24, pCoreCount: 8, eCoreCount: 16, threadCount: 32, baseClock: "3.2 GHz", boostClock: "6.0 GHz", tdp: "125W (253W MTP)", ddr4_support: true, ddr5_support: true, pcie_version: "5.0", freshness: "2025-Q3", release_date: "2023-10-17", status: "available" },
     { id: "core-ultra-9-285k", name: "Intel Core Ultra 9 285K", score: 67731, rank: 2, coreCount: 24, pCoreCount: 8, eCoreCount: 16, threadCount: 24, baseClock: "3.7 GHz", boostClock: "5.7 GHz", tdp: "125W (250W MTP)", ddr4_support: false, ddr5_support: true, pcie_version: "5.0", freshness: "2024-Q4", release_date: "2024-10-24", status: "available" }
   ],
 
@@ -49,3 +49,6 @@ const components = {
     { id: "cod-black-ops-6", name: "Call of Duty: Black Ops 6", cpu_intensity: 0.85, gpu_intensity: 0.8, ray_tracing_support: true, recommended_cpu: "i5-12600K", recommended_gpu: "RTX 3060", esports_suitable: true, aaa_title: true }
   ]
 };
+
+// Export for browser usage
+window.components = components;

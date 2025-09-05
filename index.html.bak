@@ -90,6 +90,15 @@
                 padding: 5px !important;
             }
             
+            /* Ensure unique gradients work on small screens */
+            .cpu-icon-wrapper,
+            .gpu-icon-wrapper,
+            .resolution-icon-wrapper {
+                width: 36px !important;
+                height: 36px !important;
+                padding: 5px !important;
+            }
+            
             .field-icon {
                 width: 24px !important;
                 height: 24px !important;
@@ -136,6 +145,19 @@
             width: 45px;
             height: 45px;
             flex-shrink: 0;
+        }
+
+        /* Unique gradient backgrounds for top 3 select field icons */
+        .cpu-icon-wrapper {
+            background: linear-gradient(135deg, #607afb, #2f396a); /* Purple gradient for CPU */
+        }
+
+        .gpu-icon-wrapper {
+            background: linear-gradient(135deg, #ff6b6b, #c44569); /* Red gradient for GPU */
+        }
+
+        .resolution-icon-wrapper {
+            background: linear-gradient(135deg, #4ecdc4, #1a936f); /* Teal gradient for Resolution */
         }
 
         .field-icon {
@@ -1315,13 +1337,224 @@
             color: #e0e0e0;
             line-height: 1.5;
         }
+
+        /* System Configuration Analysis */
+        .system-config-analysis {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .system-config-analysis h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .analysis-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        @media (max-width: 400px) {
+            .analysis-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .analysis-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .analysis-box h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 10px;
+        }
+
+        .analysis-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .status-indicator {
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .status-indicator.good {
+            color: #4CAF50;
+        }
+
+        .status-indicator.warning {
+            color: #FFB300;
+        }
+
+        .status-indicator.bad {
+            color: #E53935;
+        }
+
+        .analysis-details {
+            flex: 1;
+        }
+
+        .analysis-details h5 {
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .analysis-details p {
+            margin: 0;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        /* Gaming Experience Prediction */
+        .gaming-prediction {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .gaming-prediction h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .prediction-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        @media (max-width: 400px) {
+            .prediction-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .prediction-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .prediction-box h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 10px;
+        }
+
+        .fps-estimate {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #607afb;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .prediction-details p {
+            margin: 8px 0;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .prediction-content ul, .prediction-content ol {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .prediction-content li {
+            margin: 8px 0;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        /* Optimization Tips */
+        .optimization-tips {
+            background: #21284a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .optimization-tips h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        @media (max-width: 400px) {
+            .tips-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .tips-box {
+            background: #181d35;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .tips-box h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #607afb;
+            padding-bottom: 10px;
+        }
+
+        .tips-box ul, .tips-box ol {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .tips-box li {
+            margin: 8px 0;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
     </style>
-</head>
-<body>
+
     <div class="container">
         <div class="header">
             <h1>PC Bottleneck Calculator</h1>
-            <p>Analyze your CPU and GPU balance to optimize gaming performance and identify hardware limitations</p>
+            <p>Analyze your system configuration to identify performance bottlenecks and optimize your build</p>
         </div>
 
         <div class="calculator">
@@ -1330,66 +1563,68 @@
                     <div class="form-group">
                         <label for="cpu">
                             <span class="label-content">
-                                <span class="icon-wrapper">
-                                    <img src="images/cpu.png" alt="CPU" class="field-icon">
+                                <span class="icon-wrapper cpu-icon-wrapper">
+                                    <img src="images/cpu.png" alt="CPU" class="field-icon" style="width: 28px; height: 28px;">
                                 </span>
                                 <span class="label-text-container">
-                                    <span class="label-title">Processor *</span>
-                                    <span class="field-description">Select your CPU</span>
+                                    <span class="label-title">CPU</span>
+                                    <span class="field-description">Select your processor</span>
                                 </span>
                             </span>
-                            <span class="info-icon" title="Select your CPU">ⓘ</span>
+                            <span class="info-icon" title="Central Processing Unit">ⓘ</span>
                         </label>
                         <select id="cpu">
-                            <option value="">Select CPU...</option>
+                            <option value="">Select a CPU</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="gpu">
                             <span class="label-content">
-                                <span class="icon-wrapper" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
-                                    <img src="images/gpu.png" alt="GPU" class="field-icon">
+                                <span class="icon-wrapper gpu-icon-wrapper">
+                                    <img src="images/gpu.png" alt="GPU" class="field-icon" style="width: 28px; height: 28px;">
                                 </span>
                                 <span class="label-text-container">
-                                    <span class="label-title">Graphics Card *</span>
-                                    <span class="field-description">Select your GPU</span>
+                                    <span class="label-title">GPU</span>
+                                    <span class="field-description">Select your graphics card</span>
                                 </span>
                             </span>
-                            <span class="info-icon" title="Select your GPU">ⓘ</span>
+                            <span class="info-icon" title="Graphics Processing Unit">ⓘ</span>
                         </label>
                         <select id="gpu">
-                            <option value="">Select GPU...</option>
+                            <option value="">Select a GPU</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="resolution">
                             <span class="label-content">
-                                <span class="icon-wrapper" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
-                                    <img src="images/resolution.png" alt="Resolution" class="field-icon">
+                                <span class="icon-wrapper resolution-icon-wrapper">
+                                    <img src="images/resolution.png" alt="Resolution" class="field-icon" style="width: 28px; height: 28px;">
                                 </span>
                                 <span class="label-text-container">
                                     <span class="label-title">Resolution</span>
-                                    <span class="field-description">Monitor resolution</span>
+                                    <span class="field-description">Select your display resolution</span>
                                 </span>
                             </span>
-                            <span class="info-icon" title="Your display resolution">ⓘ</span>
+                            <span class="info-icon" title="Display resolution">ⓘ</span>
                         </label>
                         <select id="resolution">
-                            <option value="1080p">1080p (1920×1080)</option>
-                            <option value="1440p">1440p (2560×1440)</option>
-                            <option value="4k">4K (3840×2160)</option>
+                            <option value="1080p" selected>1920x1080 (1080p)</option>
+                            <option value="1440p">2560x1440 (1440p)</option>
+                            <option value="4k">3840x2160 (4K)</option>
                         </select>
                     </div>
+
+
                 </div>
 
                 <div class="advanced-toggle">
-                    <button type="button" class="toggle-btn" id="toggle-btn">
-                        <span>Show Advanced Options</span>
+                    <button type="button" class="toggle-btn" id="advanced-toggle">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
+                        Advanced Settings
                     </button>
                 </div>
 
@@ -1400,8 +1635,8 @@
                                 <img src="images/storage.png" alt="Storage" class="field-icon" style="width: 24px; height: 24px;">
                             </span>
                             <span class="field-group-title-container">
-                                <span class="field-group-title">Memory & Storage</span>
-                                <span class="field-group-description">Configure your system memory and storage for optimal performance</span>
+                                <span class="field-group-title">Storage & Memory</span>
+                                <span class="field-group-description">Configure storage and memory settings</span>
                             </span>
                         </div>
                         <div class="advanced-grid">
@@ -1409,16 +1644,17 @@
                                 <label for="ram">
                                     <span class="label-content">
                                         <span class="label-text-container">
-                                            <span class="label-title">RAM Amount</span>
+                                            <span class="label-title">RAM</span>
                                         </span>
                                     </span>
-                                    <span class="info-icon" title="Total system RAM">ⓘ</span>
+                                    <span class="info-icon" title="Random Access Memory">ⓘ</span>
                                 </label>
                                 <select id="ram">
                                     <option value="8">8GB</option>
                                     <option value="16" selected>16GB</option>
                                     <option value="32">32GB</option>
                                     <option value="64">64GB</option>
+                                    <option value="128">128GB</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -1524,11 +1760,6 @@
                                 </label>
                                 <select id="game">
                                     <option value="">General Gaming</option>
-                                    <option value="cyberpunk-2077">Cyberpunk 2077</option>
-                                    <option value="cs2">Counter-Strike 2</option>
-                                    <option value="valorant">Valorant</option>
-                                    <option value="alan-wake-2">Alan Wake 2</option>
-                                    <option value="fortnite">Fortnite</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -1549,15 +1780,6 @@
                                     <option value="rt-quality">RT: Quality</option>
                                 </select>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="button" class="calculate-btn" id="calculate-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
                     Analyze Build
                 </button>
             </div>
@@ -1746,6 +1968,108 @@
                     </div>
                 </div>
 
+                <!-- System Configuration Analysis -->
+                <div id="system-config-analysis" class="system-config-analysis" style="display: none;">
+                    <h3>System Configuration Analysis</h3>
+                    <div class="analysis-container">
+                        <div class="ram-analysis analysis-box">
+                            <h4>RAM Analysis</h4>
+                            <div class="analysis-content">
+                                <div class="status-indicator" id="ram-status-indicator">✓</div>
+                                <div class="analysis-details">
+                                    <h5 id="ram-amount-type">16GB DDR4</h5>
+                                    <p id="ram-analysis-text">Sufficient for gaming and general productivity</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="storage-analysis analysis-box">
+                            <h4>Storage Analysis</h4>
+                            <div class="analysis-content">
+                                <div class="status-indicator" id="storage-status-indicator">△</div>
+                                <div class="analysis-details">
+                                    <h5 id="storage-type">NVMe SSD</h5>
+                                    <p id="storage-analysis-text">Fast loading times but consider larger capacity</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="usage-match analysis-box">
+                            <h4>Usage Match</h4>
+                            <div class="analysis-content">
+                                <div class="status-indicator" id="usage-status-indicator">✓</div>
+                                <div class="analysis-details">
+                                    <h5 id="usage-purpose">Gaming</h5>
+                                    <p id="usage-analysis-text">Well-matched for gaming performance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gaming Experience Prediction -->
+                <div id="gaming-prediction" class="gaming-prediction" style="display: none;">
+                    <h3>Gaming Experience Prediction</h3>
+                    <div class="prediction-container">
+                        <div class="esports-prediction prediction-box">
+                            <h4>eSports Games</h4>
+                            <div class="prediction-content">
+                                <div class="fps-estimate" id="esports-fps">185 FPS</div>
+                                <div class="prediction-details">
+                                    <p id="esports-performance">Excellent performance for competitive gaming</p>
+                                    <p id="esports-settings">Settings: High, 1080p</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="aaa-prediction prediction-box">
+                            <h4>AAA Games</h4>
+                            <div class="prediction-content">
+                                <div class="fps-estimate" id="aaa-fps">95 FPS</div>
+                                <div class="prediction-details">
+                                    <p id="aaa-performance">Great performance for demanding titles</p>
+                                    <p id="aaa-settings">Settings: Medium-High, 1440p</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-advice prediction-box">
+                            <h4>Settings Advice</h4>
+                            <div class="prediction-content">
+                                <ul id="settings-advice-list">
+                                    <li>Texture Quality: High</li>
+                                    <li>Shadow Quality: Medium</li>
+                                    <li>Anti-Aliasing: FXAA</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optimization Tips -->
+                <div id="optimization-tips" class="optimization-tips" style="display: none;">
+                    <h3>Optimization Tips</h3>
+                    <div class="tips-container">
+                        <div class="system-optimization tips-box">
+                            <h4>System Optimization</h4>
+                            <ul id="system-optimization-list">
+                                <li>Update GPU drivers to latest version</li>
+                                <li>Disable unnecessary startup programs</li>
+                                <li>Enable Game Mode in Windows settings</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="hardware-upgrades tips-box">
+                            <h4>Hardware Upgrades</h4>
+                            <ol id="hardware-upgrade-list">
+                                <li>Increase RAM to 32GB for content creation</li>
+                                <li>Upgrade to RTX 4080 for 4K gaming</li>
+                                <li>Add 1TB NVMe SSD for more storage</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="builds-section">
                     <h3>Recommended Balanced Builds</h3>
                     <div class="builds-grid">
@@ -1808,19 +2132,15 @@
         </div>
     </div>
 
+    <!-- Load external data file -->
     <script src="data.js"></script>
-    <script>
 
+    <script>
         // Chart storage
         const charts = {};
 
         // DOM elements
-        const cpuSelect = document.getElementById('cpu');
-        const gpuSelect = document.getElementById('gpu');
-        const toggleBtn = document.getElementById('toggle-btn');
-        const advancedFields = document.getElementById('advanced-fields');
-        const calculateBtn = document.getElementById('calculate-btn');
-        const resultsSection = document.getElementById('results-section');
+        let cpuSelect, gpuSelect, gameSelect, toggleBtn, advancedFields, calculateBtn, resultsSection;
 
         // Populate dropdowns
         function populateDropdowns() {
@@ -1839,124 +2159,149 @@
                 option.textContent = `${gpu.name} (Rank: ${gpu.rank})`;
                 gpuSelect.appendChild(option);
             });
+
+            // Populate Games
+            if (gameSelect) {
+                components.games.forEach(game => {
+                    const option = document.createElement('option');
+                    option.value = game.id;
+                    option.textContent = game.name;
+                    gameSelect.appendChild(option);
+                });
+            }
         }
 
-        // Toggle advanced options
-        toggleBtn.addEventListener('click', function() {
-            if (advancedFields.style.display === 'none' || advancedFields.style.display === '') {
-                advancedFields.style.display = 'block';
-                toggleBtn.innerHTML = `
-                    <span>Hide Advanced Options</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 15 12 9 18 15"></polyline>
-                    </svg>
-                `;
-            } else {
-                advancedFields.style.display = 'none';
-                toggleBtn.innerHTML = `
-                    <span>Show Advanced Options</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                `;
-            }
-        });
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            cpuSelect = document.getElementById('cpu');
+            gpuSelect = document.getElementById('gpu');
+            gameSelect = document.getElementById('game');
+            toggleBtn = document.getElementById('advanced-toggle');
+            advancedFields = document.getElementById('advanced-fields');
+            calculateBtn = document.getElementById('calculate-btn');
+            resultsSection = document.getElementById('results-section');
 
-        // Calculate bottleneck
-        calculateBtn.addEventListener('click', function() {
-            try {
-                console.log('Calculate button clicked');
-                
-                // Check if DOM elements exist
-                if (!cpuSelect) {
-                    console.error('CPU select element not found');
-                    alert('Error: CPU select element not found');
-                    return;
-                }
-                
-                if (!gpuSelect) {
-                    console.error('GPU select element not found');
-                    alert('Error: GPU select element not found');
-                    return;
-                }
-                
-                const cpuId = cpuSelect.value;
-                const gpuId = gpuSelect.value;
-                
-                console.log('Selected CPU ID:', cpuId);
-                console.log('Selected GPU ID:', gpuId);
+            // Populate dropdowns
+            populateDropdowns();
 
-                if (!cpuId || !gpuId) {
-                    console.warn('Please select both CPU and GPU to calculate bottleneck.');
-                    alert('Please select both CPU and GPU to calculate bottleneck.');
-                    return;
+            // Toggle advanced options
+            toggleBtn.addEventListener('click', function() {
+                if (advancedFields.style.display === 'none' || advancedFields.style.display === '') {
+                    advancedFields.style.display = 'block';
+                    toggleBtn.innerHTML = `
+                        <span>Hide Advanced Options</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 15 12 9 18 15"></polyline>
+                        </svg>
+                    `;
+                } else {
+                    advancedFields.style.display = 'none';
+                    toggleBtn.innerHTML = `
+                        <span>Show Advanced Options</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    `;
                 }
+            });
 
-                const cpu = components.cpus.find(c => c.id === cpuId);
-                const gpu = components.gpus.find(g => g.id === gpuId);
-                
-                console.log('Found CPU:', cpu);
-                console.log('Found GPU:', gpu);
-                
-                if (!cpu) {
-                    console.error('CPU not found in components database');
-                    alert('Error: Selected CPU not found in database');
-                    return;
-                }
-                
-                if (!gpu) {
-                    console.error('GPU not found in components database');
-                    alert('Error: Selected GPU not found in database');
-                    return;
-                }
-                
-                const resolutionElement = document.getElementById('resolution');
-                if (!resolutionElement) {
-                    console.error('Resolution element not found');
-                    alert('Error: Resolution element not found');
-                    return;
-                }
-                
-                const resolution = resolutionElement.value;
-                console.log('Selected resolution:', resolution);
+            // Calculate bottleneck
+            calculateBtn.addEventListener('click', function() {
+                try {
+                    console.log('Calculate button clicked');
+                    
+                    // Check if DOM elements exist
+                    if (!cpuSelect) {
+                        console.error('CPU select element not found');
+                        alert('Error: CPU select element not found');
+                        return;
+                    }
+                    
+                    if (!gpuSelect) {
+                        console.error('GPU select element not found');
+                        alert('Error: GPU select element not found');
+                        return;
+                    }
+                    
+                    const cpuId = cpuSelect.value;
+                    const gpuId = gpuSelect.value;
+                    
+                    console.log('Selected CPU ID:', cpuId);
+                    console.log('Selected GPU ID:', gpuId);
 
-                // Get advanced settings
-                const ramElement = document.getElementById('ram');
-                const purposeElement = document.getElementById('purpose');
-                const gameElement = document.getElementById('game');
-                const refreshRateElement = document.getElementById('refresh-rate');
-                const graphicsSettingsElement = document.getElementById('graphics-settings');
-                
-                if (!ramElement || !purposeElement || !gameElement || !refreshRateElement || !graphicsSettingsElement) {
-                    console.error('Some advanced settings elements not found');
-                    alert('Error: Some advanced settings elements not found');
-                    return;
+                    if (!cpuId || !gpuId) {
+                        console.warn('Please select both CPU and GPU to calculate bottleneck.');
+                        alert('Please select both CPU and GPU to calculate bottleneck.');
+                        return;
+                    }
+
+                    const cpu = components.cpus.find(c => c.id === cpuId);
+                    const gpu = components.gpus.find(g => g.id === gpuId);
+                    
+                    console.log('Found CPU:', cpu);
+                    console.log('Found GPU:', gpu);
+                    
+                    if (!cpu) {
+                        console.error('CPU not found in components database');
+                        alert('Error: Selected CPU not found in database');
+                        return;
+                    }
+                    
+                    if (!gpu) {
+                        console.error('GPU not found in components database');
+                        alert('Error: Selected GPU not found in database');
+                        return;
+                    }
+                    
+                    const resolutionElement = document.getElementById('resolution');
+                    if (!resolutionElement) {
+                        console.error('Resolution element not found');
+                        alert('Error: Resolution element not found');
+                        return;
+                    }
+                    
+                    const resolution = resolutionElement.value;
+                    console.log('Selected resolution:', resolution);
+
+                    // Get advanced settings
+                    const ramElement = document.getElementById('ram');
+                    const purposeElement = document.getElementById('purpose');
+                    const gameElement = document.getElementById('game');
+                    const refreshRateElement = document.getElementById('refresh-rate');
+                    const graphicsSettingsElement = document.getElementById('graphics-settings');
+                    
+                    if (!ramElement || !purposeElement || !gameElement || !refreshRateElement || !graphicsSettingsElement) {
+                        console.error('Some advanced settings elements not found');
+                        alert('Error: Some advanced settings elements not found');
+                        return;
+                    }
+                    
+                    const ram = parseInt(ramElement.value) || 16;
+                    const purpose = purposeElement.value || "gaming";
+                    const gameId = gameElement.value || "";
+                    const refreshRate = parseInt(refreshRateElement.value) || 144;
+                    const graphicsSettings = graphicsSettingsElement.value || "high";
+                    
+                    console.log('Advanced settings:', { ram, purpose, gameId, refreshRate, graphicsSettings });
+
+                    // Perform calculation
+                    console.log('Calling calculateBottleneck function');
+                    const results = calculateBottleneck(cpu, gpu, resolution, {
+                        ram, purpose, gameId, refreshRate, graphicsSettings
+                    });
+                    console.log('Calculation results:', results);
+
+                    // Display results
+                    console.log('Calling displayResults function');
+                    displayResults(results, cpu, gpu, resolution);
+                    console.log('Finished displaying results');
+                } catch (error) {
+                    console.error('Error calculating bottleneck:', error);
+                    console.error('Error stack:', error.stack);
+                    alert('An error occurred while calculating the bottleneck. Please check the console for details.');
                 }
-                
-                const ram = parseInt(ramElement.value) || 16;
-                const purpose = purposeElement.value || "gaming";
-                const gameId = gameElement.value || "";
-                const refreshRate = parseInt(refreshRateElement.value) || 144;
-                const graphicsSettings = graphicsSettingsElement.value || "high";
-                
-                console.log('Advanced settings:', { ram, purpose, gameId, refreshRate, graphicsSettings });
-
-                // Perform calculation
-                console.log('Calling calculateBottleneck function');
-                const results = calculateBottleneck(cpu, gpu, resolution, {
-                    ram, purpose, gameId, refreshRate, graphicsSettings
-                });
-                console.log('Calculation results:', results);
-
-                // Display results
-                console.log('Calling displayResults function');
-                displayResults(results, cpu, gpu, resolution);
-                console.log('Finished displaying results');
-            } catch (error) {
-                console.error('Error calculating bottleneck:', error);
-                console.error('Error stack:', error.stack);
-                alert('An error occurred while calculating the bottleneck. Please check the console for details.');
-            }
+            });
         });
 
         // Bottleneck calculation
@@ -2009,100 +2354,6 @@
                     if (game) {
                         console.log('Applying game adjustments for:', game.name);
                         // CPU-intensive games reduce GPU bottleneck impact
-                        if (game.cpu_intensity > 0.8) {
-                            gpuScore *= 0.9;
-                            console.log('Applied CPU-intensive game adjustment, GPU score now:', gpuScore);
-                        }
-                        
-                        // GPU-intensive games reduce CPU bottleneck impact
-                        if (game.gpu_intensity > 0.8) {
-                            cpuScore *= 0.95;
-                            console.log('Applied GPU-intensive game adjustment, CPU score now:', cpuScore);
-                        }
-                    }
-                }
-
-                // Graphics settings adjustments
-                const settingsFactors = {
-                    'low': { cpu: 1.15, gpu: 0.75 },
-                    'medium': { cpu: 1.05, gpu: 0.85 },
-                    'high': { cpu: 1.0, gpu: 1.0 },
-                    'ultra': { cpu: 0.92, gpu: 1.2 },
-                    'rt-performance': { cpu: 0.85, gpu: 1.35 },
-                    'rt-quality': { cpu: 0.8, gpu: 1.5 }
-                };
-                
-                let graphicsSettings = advanced.graphicsSettings || 'high';
-                if (!settingsFactors[graphicsSettings]) {
-                    console.warn('Invalid graphics settings:', graphicsSettings, 'Using default high');
-                    graphicsSettings = 'high';
-                }
-                
-                const settingsFactor = settingsFactors[graphicsSettings];
-                cpuScore *= settingsFactor.cpu;
-                gpuScore *= settingsFactor.gpu;
-                
-                console.log('Scores after graphics settings adjustment - CPU:', cpuScore, 'GPU:', gpuScore);
-
-                // RAM impact
-                const ram = advanced.ram || 16;
-                if (ram < 16) {
-                    cpuScore *= (0.9 + (ram - 8) * 0.01);
-                    console.log('Applied RAM adjustment, CPU score now:', cpuScore);
-                }
-
-                // Calculate bottleneck percentages
-                const total = cpuScore + gpuScore;
-                const cpuPercentage = cpuScore / total;
-                const gpuPercentage = gpuScore / total;
-                
-                console.log('Percentages - CPU:', cpuPercentage, 'GPU:', gpuPercentage, 'Total:', total);
-
-                // Industry standard: ideal balance is 45% CPU / 55% GPU for gaming
-                const idealCpuPercentage = 0.45;
-                const idealGpuPercentage = 0.55;
-
-                let cpuBottleneck = 0;
-                let gpuBottleneck = 0;
-
-                // CPU bottleneck occurs when CPU is significantly below ideal percentage
-                if (cpuPercentage < idealCpuPercentage * 0.9) {
-                    cpuBottleneck = Math.round((1 - (cpuPercentage / (idealCpuPercentage * 0.9))) * 100);
-                    console.log('Calculated CPU bottleneck:', cpuBottleneck);
-                }
-
-                // GPU bottleneck occurs when GPU is significantly below ideal percentage
-                if (gpuPercentage < idealGpuPercentage * 0.9) {
-                    gpuBottleneck = Math.round((1 - (gpuPercentage / (idealGpuPercentage * 0.9))) * 100);
-                    console.log('Calculated GPU bottleneck:', gpuBottleneck);
-                }
-
-                // FPS calculation
-                const resolutionKey = resolution.replace('p', '');
-                const baseFps = (gpu && gpu['fps' + resolutionKey]) || 100;
-                console.log('Base FPS for', resolution, ':', baseFps);
-                
-                // Apply bottleneck effects to FPS
-                let effectiveFps = baseFps;
-                
-                if (cpuBottleneck > 0) {
-                    effectiveFps *= (1 - (cpuBottleneck * 0.007));
-                    console.log('Applied CPU bottleneck effect, FPS now:', effectiveFps);
-                }
-                
-                if (gpuBottleneck > 0) {
-                    effectiveFps *= (1 - (gpuBottleneck * 0.007));
-                    console.log('Applied GPU bottleneck effect, FPS now:', effectiveFps);
-                }
-
-                // Apply refresh rate considerations
-                console.log('Advanced object:', advanced);
-                const refreshRateValue = advanced && advanced.refreshRate ? advanced.refreshRate : 144;
-                console.log('Refresh rate value:', refreshRateValue);
-                const targetFps = Math.min(refreshRateValue * 0.8, effectiveFps);
-                console.log('Target FPS:', targetFps);
-
-                // Calculate more realistic metrics
                 const avgFPS = Math.round(effectiveFps);
                 const maxFPS = Math.round(avgFPS * 1.25);
                 const onePercentLows = Math.round(avgFPS * 0.7);
@@ -2149,6 +2400,18 @@
                     `;
                 }
 
+                // Get advanced settings for Phase 2 features
+                const advancedSettings = {
+                    ram: document.getElementById('ram').value,
+                    ramType: document.getElementById('ram-type').value,
+                    storage: document.getElementById('storage').value,
+                    purpose: document.getElementById('purpose').value,
+                    refreshRate: document.getElementById('refresh-rate').value,
+                    gameId: document.getElementById('game').value,
+                    graphicsSettings: document.getElementById('graphics-settings').value,
+                    resolution: resolution
+                };
+
                 // Populate Bottleneck Severity Banner
                 populateSeverityBanner(results, cpu, gpu, resolution);
 
@@ -2157,6 +2420,15 @@
 
                 // Populate Component Analysis
                 populateComponentAnalysis(cpu, gpu, resolution);
+
+                // Populate System Configuration Analysis (Phase 2)
+                populateSystemConfigAnalysis(cpu, gpu, advancedSettings);
+
+                // Populate Gaming Experience Prediction (Phase 2)
+                populateGamingPrediction(cpu, gpu, advancedSettings);
+
+                // Populate Optimization Tips (Phase 2)
+                populateOptimizationTips(cpu, gpu, results, advancedSettings);
 
                 // Update performance metrics
                 const avgFps = document.getElementById('avg-fps');
@@ -2167,6 +2439,13 @@
                 if (maxFps) maxFps.textContent = results.maxFPS;
                 if (onePercentLows) onePercentLows.textContent = results.onePercentLows;
 
+                // Update gauge center values
+                const cpuCenterValue = document.getElementById('cpu-center-value');
+                const gpuCenterValue = document.getElementById('gpu-center-value');
+                
+                if (cpuCenterValue) cpuCenterValue.textContent = `${results.cpuBottleneck}%`;
+                if (gpuCenterValue) gpuCenterValue.textContent = `${results.gpuBottleneck}%`;
+                
                 // Create gauges
                 createGauge('cpu-gauge', results.cpuBottleneck, 'CPU');
                 createGauge('gpu-gauge', results.gpuBottleneck, 'GPU');
@@ -2189,61 +2468,42 @@
             }
         }
 
-        // Create gauge
-        function createGauge(canvasId, percentage, type) {
+        // Create gauge chart
+        function createGauge(canvasId, value, type) {
             const canvas = document.getElementById(canvasId);
-            const ctx = canvas.getContext('2d');
-
-            // Destroy old chart if exists
-            if (charts[canvasId]) {
-                charts[canvasId].destroy();
+            if (!canvas) {
+                console.error(`Canvas element with ID '${canvasId}' not found`);
+                return;
             }
 
-            // Color logic
+            // Destroy existing chart if it exists
+            if (canvas.chart) {
+                canvas.chart.destroy();
+            }
+
+            // Determine color based on value
             let color;
-            if (percentage <= 10) {
+            if (value <= 10) {
                 color = '#4CAF50'; // Green
-            } else if (percentage <= 25) {
-                color = '#FFB300'; // Amber
+            } else if (value <= 25) {
+                color = '#FFB300'; // Yellow
             } else {
                 color = '#E53935'; // Red
             }
 
-            // Update center value with animation
-            const centerValueId = canvasId.replace('-gauge', '-center-value');
-            const currentValue = document.getElementById(centerValueId).textContent.replace('%', '');
-            const targetValue = percentage;
-            
-            // Animate the value
-            let start = parseFloat(currentValue) || 0;
-            const duration = 1200; // ms
-            const startTime = performance.now();
-            
-            function updateCounter(timestamp) {
-                const elapsed = timestamp - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const currentValue = Math.floor(start + (targetValue - start) * progress);
-                
-                document.getElementById(centerValueId).textContent = `${currentValue}%`;
-                
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                }
-            }
-            
-            requestAnimationFrame(updateCounter);
-
-            // Create chart
-            charts[canvasId] = new Chart(ctx, {
+            // Create new chart
+            const ctx = canvas.getContext('2d');
+            canvas.chart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
+                    labels: [type, 'Remaining'],
                     datasets: [{
-                        data: [percentage, 100 - percentage],
+                        data: [value, 100 - value],
                         backgroundColor: [
                             color,
-                            '#f0f0f0'
+                            '#2f396a'
                         ],
-                        borderWidth: 0,
+                        borderColor: 'transparent',
                         cutout: '80%',
                         borderRadius: 14
                     }]
@@ -2367,7 +2627,8 @@
                 </div>
             `).join('');
         }
-                // Populate Severity Banner
+
+        // Populate Severity Banner
         function populateSeverityBanner(results, cpu, gpu, resolution) {
             try {
                 // Get DOM elements
@@ -2554,6 +2815,586 @@
             }
         }
 
+        // System Configuration Analysis Functions
+        function analyzeRAM(ramAmount, ramType, purpose) {
+            try {
+                let status = 'good';
+                let message = '';
+                
+                // Determine recommended RAM based on purpose
+                let recommendedRAM = 16;
+                switch (purpose) {
+                    case 'video-editing':
+                    case '3d-rendering':
+                    case 'streaming':
+                        recommendedRAM = 32;
+                        break;
+                    case 'gaming':
+                        recommendedRAM = 16;
+                        break;
+                    case 'productivity':
+                        recommendedRAM = 16;
+                        break;
+                }
+                
+                // Check RAM adequacy
+                if (ramAmount < recommendedRAM) {
+                    status = 'bad';
+                    message = `Insufficient RAM for ${purpose}. Recommended: ${recommendedRAM}GB.`;
+                } else if (ramAmount === recommendedRAM) {
+                    status = 'good';
+                    message = `Sufficient RAM for ${purpose}.`;
+                } else {
+                    status = 'good';
+                    message = `More than sufficient RAM for ${purpose}.`;
+                }
+                
+                // Factor in RAM type
+                if (ramType === 'ddr5' && ramAmount >= 16) {
+                    message += ' DDR5 provides better performance than DDR4.';
+                } else if (ramType === 'ddr4' && ramAmount >= 32) {
+                    message += ' Consider DDR5 for better performance with high RAM capacity.';
+                }
+                
+                return {
+                    status: status,
+                    message: message,
+                    amountType: `${ramAmount}GB ${ramType.toUpperCase()}`
+                };
+            } catch (error) {
+                console.error('Error analyzing RAM:', error);
+                return {
+                    status: 'warning',
+                    message: 'Unable to analyze RAM configuration.',
+                    amountType: 'Unknown'
+                };
+            }
+        }
+
+        function analyzeStorage(storageType) {
+            try {
+                let status = 'good';
+                let message = '';
+                
+                switch (storageType) {
+                    case 'nvme':
+                        status = 'good';
+                        message = 'Excellent performance with fastest loading times.';
+                        break;
+                    case 'sata':
+                        status = 'warning';
+                        message = 'Good performance but slower than NVMe SSD.';
+                        break;
+                    case 'hdd':
+                        status = 'bad';
+                        message = 'Slow loading times. Consider upgrading to SSD.';
+                        break;
+                }
+                
+                // Capitalize first letter
+                const displayType = storageType.charAt(0).toUpperCase() + storageType.slice(1);
+                const storageName = displayType === 'Nvme' ? 'NVMe SSD' : 
+                                  displayType === 'Sata' ? 'SATA SSD' : 
+                                  'HDD';
+                
+                return {
+                    status: status,
+                    message: message,
+                    type: storageName
+                };
+            } catch (error) {
+                console.error('Error analyzing storage:', error);
+                return {
+                    status: 'warning',
+                    message: 'Unable to analyze storage configuration.',
+                    type: 'Unknown'
+                };
+            }
+        }
+
+        function analyzeUsageMatch(cpu, gpu, purpose) {
+            try {
+                let status = 'good';
+                let message = '';
+                
+                // Define purpose requirements
+                const purposeRequirements = {
+                    'gaming': { cpu: 12000, gpu: 12000 },
+                    'video-editing': { cpu: 16000, gpu: 10000 },
+                    '3d-rendering': { cpu: 18000, gpu: 8000 },
+                    'streaming': { cpu: 15000, gpu: 10000 },
+                    'productivity': { cpu: 10000, gpu: 5000 }
+                };
+                
+                const requirements = purposeRequirements[purpose] || purposeRequirements['gaming'];
+                
+                // Check if components meet requirements
+                if (cpu.score < requirements.cpu * 0.8 || gpu.score < requirements.gpu * 0.8) {
+                    status = 'bad';
+                    message = `System underpowered for ${purpose}. Consider upgrading components.`;
+                } else if (cpu.score < requirements.cpu * 0.95 || gpu.score < requirements.gpu * 0.95) {
+                    status = 'warning';
+                    message = `System slightly underpowered for ${purpose}. May experience limitations.`;
+                } else {
+                    status = 'good';
+                    message = `Well-matched system for ${purpose}.`;
+                }
+                
+                // Special case for gaming
+                if (purpose === 'gaming') {
+                    const balance = Math.abs(cpu.score - gpu.score) / ((cpu.score + gpu.score) / 2);
+                    if (balance > 0.3) {
+                        message += ' However, there is a significant imbalance between CPU and GPU.';
+                    }
+                }
+                
+                const purposeName = purpose.split('-').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                ).join(' ');
+                
+                return {
+                    status: status,
+                    message: message,
+                    purpose: purposeName
+                };
+            } catch (error) {
+                console.error('Error analyzing usage match:', error);
+                return {
+                    status: 'warning',
+                    message: 'Unable to analyze usage match.',
+                    purpose: 'Unknown'
+                };
+            }
+        }
+
+        // Populate System Configuration Analysis
+        function populateSystemConfigAnalysis(cpu, gpu, advancedSettings) {
+            try {
+                const systemConfigAnalysis = document.getElementById('system-config-analysis');
+                
+                if (!systemConfigAnalysis) {
+                    console.error('System config analysis element not found');
+                    return;
+                }
+                
+                // Get advanced settings
+                const ramAmount = parseInt(advancedSettings.ram) || 16;
+                const ramType = advancedSettings.ramType || 'ddr4';
+                const storageType = advancedSettings.storage || 'nvme';
+                const purpose = advancedSettings.purpose || 'gaming';
+                
+                // Analyze RAM
+                const ramAnalysis = analyzeRAM(ramAmount, ramType, purpose);
+                const ramStatusIndicator = document.getElementById('ram-status-indicator');
+                const ramAmountType = document.getElementById('ram-amount-type');
+                const ramAnalysisText = document.getElementById('ram-analysis-text');
+                
+                if (ramStatusIndicator) {
+                    ramStatusIndicator.textContent = ramAnalysis.status === 'good' ? '✓' : 
+                                                    ramAnalysis.status === 'warning' ? '△' : '✗';
+                    ramStatusIndicator.className = 'status-indicator ' + ramAnalysis.status;
+                }
+                if (ramAmountType) ramAmountType.textContent = ramAnalysis.amountType;
+                if (ramAnalysisText) ramAnalysisText.textContent = ramAnalysis.message;
+                
+                // Analyze Storage
+                const storageAnalysis = analyzeStorage(storageType);
+                const storageStatusIndicator = document.getElementById('storage-status-indicator');
+                const storageTypeElement = document.getElementById('storage-type');
+                const storageAnalysisText = document.getElementById('storage-analysis-text');
+                
+                if (storageStatusIndicator) {
+                    storageStatusIndicator.textContent = storageAnalysis.status === 'good' ? '✓' : 
+                                                        storageAnalysis.status === 'warning' ? '△' : '✗';
+                    storageStatusIndicator.className = 'status-indicator ' + storageAnalysis.status;
+                }
+                if (storageTypeElement) storageTypeElement.textContent = storageAnalysis.type;
+                if (storageAnalysisText) storageAnalysisText.textContent = storageAnalysis.message;
+                
+                // Analyze Usage Match
+                const usageAnalysis = analyzeUsageMatch(cpu, gpu, purpose);
+                const usageStatusIndicator = document.getElementById('usage-status-indicator');
+                const usagePurpose = document.getElementById('usage-purpose');
+                const usageAnalysisText = document.getElementById('usage-analysis-text');
+                
+                if (usageStatusIndicator) {
+                    usageStatusIndicator.textContent = usageAnalysis.status === 'good' ? '✓' : 
+                                                      usageAnalysis.status === 'warning' ? '△' : '✗';
+                    usageStatusIndicator.className = 'status-indicator ' + usageAnalysis.status;
+                }
+                if (usagePurpose) usagePurpose.textContent = usageAnalysis.purpose;
+                if (usageAnalysisText) usageAnalysisText.textContent = usageAnalysis.message;
+                
+                // Show the analysis
+                systemConfigAnalysis.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating system config analysis:', error);
+            }
+        }
+
+        // Gaming Experience Prediction Functions
+        function predictEsportsPerformance(cpu, gpu, refreshRate) {
+            try {
+                // eSports games are more CPU-intensive for consistent frame rates
+                const cpuFactor = Math.min(1.0, cpu.score / 15000); // Normalize to a high-end CPU
+                const gpuFactor = Math.min(1.0, gpu.score / 12000); // Normalize to a mid-range GPU
+                
+                // Estimate FPS (eSports games typically need 100+ FPS for competitive play)
+                let estimatedFPS = Math.round(100 * cpuFactor * 0.7 + 100 * gpuFactor * 0.3);
+                
+                // Adjust for refresh rate
+                if (refreshRate >= 240) {
+                    estimatedFPS = Math.min(estimatedFPS, 240);
+                } else if (refreshRate >= 144) {
+                    estimatedFPS = Math.min(estimatedFPS, 144);
+                } else {
+                    estimatedFPS = Math.min(estimatedFPS, 60);
+                }
+                
+                // Performance description
+                let performance = '';
+                if (estimatedFPS >= refreshRate * 0.9) {
+                    performance = 'Excellent performance for competitive gaming';
+                } else if (estimatedFPS >= refreshRate * 0.7) {
+                    performance = 'Good performance for competitive gaming';
+                } else {
+                    performance = 'May experience frame drops in competitive games';
+                }
+                
+                // Settings recommendation
+                let settings = 'High';
+                if (estimatedFPS < 100) {
+                    settings = 'Medium-High';
+                } else if (estimatedFPS > 200) {
+                    settings = 'Ultra';
+                }
+                
+                return {
+                    fps: estimatedFPS,
+                    performance: performance,
+                    settings: `${settings}, 1080p`
+                };
+            } catch (error) {
+                console.error('Error predicting eSports performance:', error);
+                return {
+                    fps: 60,
+                    performance: 'Unable to predict performance',
+                    settings: 'Unknown'
+                };
+            }
+        }
+
+        function predictAAAPerformance(cpu, gpu, resolution) {
+            try {
+                // AAA games are more GPU-intensive
+                const cpuFactor = Math.min(1.0, cpu.score / 15000);
+                const gpuFactor = Math.min(1.0, gpu.score / 20000); // Normalize to a high-end GPU
+                
+                // Get resolution-specific FPS
+                const resolutionKey = resolution.replace('p', '');
+                const baseFPS = gpu[`fps${resolutionKey}`] || 60;
+                
+                // Estimate FPS with CPU limitation
+                let estimatedFPS = Math.round(baseFPS * (gpuFactor * 0.7 + cpuFactor * 0.3));
+                
+                // Performance description
+                let performance = '';
+                if (estimatedFPS >= 60) {
+                    performance = 'Great performance for demanding titles';
+                } else if (estimatedFPS >= 30) {
+                    performance = 'Playable performance for demanding titles';
+                } else {
+                    performance = 'Struggles with demanding titles';
+                }
+                
+                // Settings recommendation
+                let settings = 'Medium';
+                if (resolution === '1080p' && estimatedFPS > 100) {
+                    settings = 'High-Ultra';
+                } else if (resolution === '1440p' && estimatedFPS > 60) {
+                    settings = 'Medium-High';
+                } else if (resolution === '4k' && estimatedFPS > 30) {
+                    settings = 'Low-Medium';
+                }
+                
+                return {
+                    fps: estimatedFPS,
+                    performance: performance,
+                    settings: `${settings}, ${resolution}`
+                };
+            } catch (error) {
+                console.error('Error predicting AAA performance:', error);
+                return {
+                    fps: 30,
+                    performance: 'Unable to predict performance',
+                    settings: 'Unknown'
+                };
+            }
+        }
+
+        function generateSettingsAdvice(cpu, gpu, resolution, gameId, graphicsSettings) {
+            try {
+                const advice = [];
+                
+                // Base advice on component strengths
+                if (cpu.score > gpu.score * 1.2) {
+                    advice.push('CPU is significantly stronger than GPU. Consider lowering CPU-intensive settings like draw distance and population density.');
+                } else if (gpu.score > cpu.score * 1.2) {
+                    advice.push('GPU is significantly stronger than CPU. Consider lowering GPU-intensive settings like texture quality and anti-aliasing.');
+                }
+                
+                // Resolution-specific advice
+                if (resolution === '4k' && gpu.score < 30000) {
+                    advice.push('For 4K gaming, consider upgrading to a more powerful GPU.');
+                } else if (resolution === '1080p' && gpu.score > 25000) {
+                    advice.push('Your GPU is underutilized at 1080p. Consider increasing resolution to 1440p or 4K.');
+                }
+                
+                // Game-specific advice
+                if (gameId) {
+                    const game = components.games.find(g => g.id === gameId);
+                    if (game) {
+                        if (game.cpu_intensity > 0.8 && cpu.score < 16000) {
+                            advice.push(`"${game.name}" is CPU-intensive. Consider upgrading your CPU for better performance.`);
+                        }
+                        if (game.gpu_intensity > 0.8 && gpu.score < 15000) {
+                            advice.push(`"${game.name}" is GPU-intensive. Consider upgrading your GPU for better performance.`);
+                        }
+                        if (game.ray_tracing_support && gpu.ray_tracing_multiplier < 1.0) {
+                            advice.push(`"${game.name}" supports ray tracing. Your GPU has limited RT performance.`);
+                        }
+                    }
+                }
+                
+                // Graphics settings advice
+                switch (graphicsSettings) {
+                    case 'ultra':
+                    case 'rt-quality':
+                        if (cpu.score < 15000 || gpu.score < 15000) {
+                            advice.push('Ultra settings may be too demanding for your system. Consider Medium-High settings.');
+                        }
+                        break;
+                    case 'low':
+                    case 'medium':
+                        if (cpu.score > 18000 && gpu.score > 20000) {
+                            advice.push('Your system can handle higher settings. Consider High or Ultra settings for better visuals.');
+                        }
+                        break;
+                }
+                
+                // Default advice if none added
+                if (advice.length === 0) {
+                    advice.push('Your system is well-balanced. Use High settings for a good balance of performance and visuals.');
+                    advice.push('Texture Quality: High');
+                    advice.push('Shadow Quality: Medium');
+                    advice.push('Anti-Aliasing: FXAA');
+                }
+                
+                return advice;
+            } catch (error) {
+                console.error('Error generating settings advice:', error);
+                return ['Unable to generate settings advice.'];
+            }
+        }
+
+        // Populate Gaming Experience Prediction
+        function populateGamingPrediction(cpu, gpu, advancedSettings) {
+            try {
+                const gamingPrediction = document.getElementById('gaming-prediction');
+                
+                if (!gamingPrediction) {
+                    console.error('Gaming prediction element not found');
+                    return;
+                }
+                
+                // Get advanced settings
+                const resolution = advancedSettings.resolution || '1080p';
+                const refreshRate = parseInt(advancedSettings.refreshRate) || 144;
+                const gameId = advancedSettings.gameId || '';
+                const graphicsSettings = advancedSettings.graphicsSettings || 'high';
+                
+                // Predict eSports performance
+                const esportsPrediction = predictEsportsPerformance(cpu, gpu, refreshRate);
+                const esportsFPS = document.getElementById('esports-fps');
+                const esportsPerformance = document.getElementById('esports-performance');
+                const esportsSettings = document.getElementById('esports-settings');
+                
+                if (esportsFPS) esportsFPS.textContent = `${esportsPrediction.fps} FPS`;
+                if (esportsPerformance) esportsPerformance.textContent = esportsPrediction.performance;
+                if (esportsSettings) esportsSettings.textContent = esportsPrediction.settings;
+                
+                // Predict AAA performance
+                const aaaPrediction = predictAAAPerformance(cpu, gpu, resolution);
+                const aaaFPS = document.getElementById('aaa-fps');
+                const aaaPerformance = document.getElementById('aaa-performance');
+                const aaaSettings = document.getElementById('aaa-settings');
+                
+                if (aaaFPS) aaaFPS.textContent = `${aaaPrediction.fps} FPS`;
+                if (aaaPerformance) aaaPerformance.textContent = aaaPrediction.performance;
+                if (aaaSettings) aaaSettings.textContent = aaaPrediction.settings;
+                
+                // Generate settings advice
+                const adviceList = generateSettingsAdvice(cpu, gpu, resolution, gameId, graphicsSettings);
+                const settingsAdviceList = document.getElementById('settings-advice-list');
+                
+                if (settingsAdviceList) {
+                    settingsAdviceList.innerHTML = adviceList.map(advice => 
+                        `<li>${advice}</li>`
+                    ).join('');
+                }
+                
+                // Show the prediction
+                gamingPrediction.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating gaming prediction:', error);
+            }
+        }
+
+        // Optimization Tips Functions
+        function generateSystemOptimizationTips(cpu, gpu, advancedSettings) {
+            try {
+                const tips = [];
+                
+                // RAM-related tips
+                const ramAmount = parseInt(advancedSettings.ram) || 16;
+                const ramType = advancedSettings.ramType || 'ddr4';
+                
+                if (ramAmount < 16) {
+                    tips.push('Upgrade RAM to 16GB or more for better multitasking and gaming performance.');
+                }
+                
+                if (ramType === 'ddr4' && cpu.ddr5_support) {
+                    tips.push('Consider upgrading to DDR5 RAM for better performance with your CPU.');
+                }
+                
+                // Storage-related tips
+                const storageType = advancedSettings.storage || 'nvme';
+                
+                if (storageType === 'hdd') {
+                    tips.push('Upgrade to an SSD for significantly faster loading times and system responsiveness.');
+                } else if (storageType === 'sata') {
+                    tips.push('Consider upgrading to NVMe SSD for even faster storage performance.');
+                }
+                
+                // General system tips
+                tips.push('Update GPU drivers to the latest version for optimal performance.');
+                tips.push('Disable unnecessary startup programs to improve boot times.');
+                tips.push('Enable Game Mode in Windows settings for better gaming performance.');
+                tips.push('Keep your system clean and dust-free for optimal thermal performance.');
+                
+                return tips;
+            } catch (error) {
+                console.error('Error generating system optimization tips:', error);
+                return ['Unable to generate optimization tips.'];
+            }
+        }
+
+        function generateHardwareUpgradeSuggestions(cpu, gpu, results, advancedSettings) {
+            try {
+                const suggestions = [];
+                
+                // Identify primary bottleneck
+                if (results.cpuBottleneck > results.gpuBottleneck && results.cpuBottleneck > 15) {
+                    suggestions.push('CPU is significantly bottlenecking your GPU. Consider upgrading to a higher-tier processor.');
+                } else if (results.gpuBottleneck > results.cpuBottleneck && results.gpuBottleneck > 15) {
+                    suggestions.push('GPU is significantly bottlenecking your CPU. Consider upgrading to a more powerful graphics card.');
+                }
+                
+                // Resolution-specific suggestions
+                const resolution = advancedSettings.resolution || '1080p';
+                
+                if (resolution === '1080p' && results.gpuBottleneck < 10) {
+                    suggestions.push('At 1080p, your GPU is underutilized. Consider increasing your resolution to 1440p.');
+                } else if (resolution === '4k' && results.cpuBottleneck > 25) {
+                    suggestions.push('At 4K, your CPU is significantly bottlenecking your GPU. Consider lowering your resolution to 1440p.');
+                }
+                
+                // RAM suggestions
+                const ramAmount = parseInt(advancedSettings.ram) || 16;
+                const purpose = advancedSettings.purpose || 'gaming';
+                
+                if (purpose === 'video-editing' || purpose === '3d-rendering' || purpose === 'streaming') {
+                    if (ramAmount < 32) {
+                        suggestions.push('For content creation tasks, consider upgrading to 32GB or 64GB RAM.');
+                    }
+                }
+                
+                // Storage suggestions
+                const storageType = advancedSettings.storage || 'nvme';
+                
+                if (storageType === 'hdd') {
+                    suggestions.push('Upgrade to NVMe SSD for significantly faster loading times and system responsiveness.');
+                }
+                
+                // Game-specific suggestions
+                const gameId = advancedSettings.gameId || '';
+                
+                if (gameId) {
+                    const game = components.games.find(g => g.id === gameId);
+                    if (game) {
+                        if (game.cpu_intensity > 0.8 && cpu.score < 16000) {
+                            suggestions.push(`For "${game.name}", consider upgrading your CPU for better performance.`);
+                        }
+                        if (game.gpu_intensity > 0.8 && gpu.score < 15000) {
+                            suggestions.push(`For "${game.name}", consider upgrading your GPU for better performance.`);
+                        }
+                    }
+                }
+                
+                // Default suggestions if none added
+                if (suggestions.length === 0) {
+                    suggestions.push('Your system is well-balanced. No immediate upgrades necessary.');
+                    suggestions.push('Consider increasing RAM to 32GB for content creation tasks.');
+                    suggestions.push('Upgrade to faster NVMe SSD for improved storage performance.');
+                }
+                
+                // Add general upgrade suggestions
+                suggestions.push('Monitor component temperatures to ensure optimal performance and longevity.');
+                suggestions.push('Consider a PC upgrade every 3-4 years for significant performance improvements.');
+                
+                return suggestions;
+            } catch (error) {
+                console.error('Error generating hardware upgrade suggestions:', error);
+                return ['Unable to generate upgrade suggestions.'];
+            }
+        }
+
+        // Populate Optimization Tips
+        function populateOptimizationTips(cpu, gpu, results, advancedSettings) {
+            try {
+                const optimizationTips = document.getElementById('optimization-tips');
+                
+                if (!optimizationTips) {
+                    console.error('Optimization tips element not found');
+                    return;
+                }
+                
+                // Generate system optimization tips
+                const systemTips = generateSystemOptimizationTips(cpu, gpu, advancedSettings);
+                const systemOptimizationList = document.getElementById('system-optimization-list');
+                
+                if (systemOptimizationList) {
+                    systemOptimizationList.innerHTML = systemTips.map(tip => 
+                        `<li>${tip}</li>`
+                    ).join('');
+                }
+                
+                // Generate hardware upgrade suggestions
+                const upgradeSuggestions = generateHardwareUpgradeSuggestions(cpu, gpu, results, advancedSettings);
+                const hardwareUpgradeList = document.getElementById('hardware-upgrade-list');
+                
+                if (hardwareUpgradeList) {
+                    hardwareUpgradeList.innerHTML = upgradeSuggestions.map(suggestion => 
+                        `<li>${suggestion}</li>`
+                    ).join('');
+                }
+                
+                // Show the tips
+                optimizationTips.style.display = 'block';
+            } catch (error) {
+                console.error('Error populating optimization tips:', error);
+            }
+        }
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             populateDropdowns();
